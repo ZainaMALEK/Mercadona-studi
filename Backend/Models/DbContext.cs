@@ -17,5 +17,10 @@ namespace Backend.Models
         public DbSet<Produit> Produits { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<Utilisateur> Utilisateurs { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
     }   
 }

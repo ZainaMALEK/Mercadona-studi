@@ -1,3 +1,31 @@
 .card-img{
-  width: 100%;
+  width: 11rem;
+  height: 11rem;
+  margin: 0 auto;
+}
+
+.card{
+  text-align : center;
+}
+p{
+  font-size: 0.8rem;
+}
+.item{
+  margin-bottom: 1%;
+}
+.promo-text{
+  font-size: 0.7em;
+    color: #e14a1a;
+}
+.promo-div{
+  background-color: #F44336;
+  width: max-content;
+  position: absolute;
+  left: 1rem;
+  color: white;
+  padding: 0 5px;
+}
+.line {
+  text-decoration: line-through;
+  font-weight: bold;
 }

@@ -12,7 +12,7 @@ namespace Backend.Models
         public string Description { get; set; }
         public float Prix { get; set; }
         public string Image { get; set; }
-        public Categorie Categorie { get; set; }
-        public Promotion Promotion { get; set; }
+        public virtual Categorie Categorie { get; set; }
+        public virtual Promotion Promotion { get; set; }
     }
 }
