@@ -12,4 +12,7 @@ export class ProductsService {
   getProducts(): Observable<any> {
     return this.http.get<any>('http://localhost:9070/api/Products/Products');
   }
+  getCategories(): Observable<any> {
+    return this.http.get<any>('http://localhost:9070/api/Products/categories');
+  }
 }
