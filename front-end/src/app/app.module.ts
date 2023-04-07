@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
+import { AuthenticationComponent } from './admin/authentication/authentication.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogueComponent,
+    AuthenticationComponent,
 
   ],
   imports: [
