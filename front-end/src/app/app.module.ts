@@ -9,12 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationComponent } from './admin/authentication/authentication.component';
+import { AdminInterfaceComponent } from './admin/admin-interface/admin-interface.component';
+import { NavbarComponent } from './admin/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CatalogueComponent,
     AuthenticationComponent,
+    AdminInterfaceComponent,
+    NavbarComponent,
 
   ],
   imports: [

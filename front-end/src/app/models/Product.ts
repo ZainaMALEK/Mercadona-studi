@@ -1,4 +1,4 @@
-export interface Produit {
+export class Produit {
   produitID: number;
   libelle: string;
   description: string;
@@ -8,12 +8,12 @@ export interface Produit {
   promotion: Promotion;
 }
 
-export interface Categorie {
+export class Categorie {
   categorieID: number;
   libelle: string;
 }
 
-export interface Promotion {
+export class Promotion {
   promotionID: number;
   debut: Date;
   fin: Date;
