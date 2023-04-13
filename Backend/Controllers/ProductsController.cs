@@ -29,8 +29,14 @@ namespace Backend.Controllers
             var categories = _context.Categories.ToList();
             return Ok(categories);
         }
+        [HttpGet("promotions")]
+        public IActionResult GetPromotions()
+        {
+            var promotions = _context.Promotions.ToList();
+            return Ok(promotions);
+        }
 
-        [HttpGet("Products")]
+        [HttpGet("products")]
         public IActionResult GetProducts()
         {
             var result = _context.Produits.ToList();

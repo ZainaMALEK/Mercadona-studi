@@ -14,19 +14,30 @@
     </div>
 
     <div class="form-group">
+      <label for="libelle">Image</label>
+      <input type="file" id="img" name="image" class="form-control" [(ngModel)]="product.image" accept="image/*" required>
+    </div>
+
+    <div class="form-group">
       <label for="prix">Prix:</label>
       <input type="number" id="prix" name="prix" class="form-control" [(ngModel)]="product.prix" required>
     </div>
 
-   <!--  <div class="form-group">
+    <div class="form-group">
       <label for="category">Catégorie:</label>
-      <select id="category" name="category" class="form-control" [(ngModel)]="product.category" required>
-        <option value="">--Choisissez une catégorie--</option>
-        <option value="Electronique">Electronique</option>
-        <option value="Mode">Mode</option>
-        <option value="Maison et jardin">Maison et jardin</option>
+      <select>
+        <option *ngFor="let categorie of categories" [value]="categorie.categorieID">{{ categorie.libelle }}</option>
       </select>
-    </div> -->
+
+    </div>
+
+    <div class="form-group">
+      <label for="category">Promotion:</label>
+      <select>
+        <option *ngFor="let promotion of promotions" [value]="promotion.promotionID">{{ promotion.remise }} %</option>
+      </select>
+
+    </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Ajouter le produit</button>
   </form>
