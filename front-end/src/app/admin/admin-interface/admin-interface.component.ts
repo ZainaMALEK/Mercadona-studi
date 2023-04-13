@@ -1,3 +1,4 @@
+import { ProductMapper } from './../../models/ProductMapper';
 import { ProductsService } from './../../services/products.service';
 import { Component } from '@angular/core';
 import { Categorie, Produit, Promotion } from 'src/app/models/Product';
@@ -23,18 +24,16 @@ export class AdminInterfaceComponent {
 
     })
   }
-  product:Produit = new Produit();
+
+  product:ProductMapper = new ProductMapper();
   categories : Categorie[];
   promotions : Promotion[];
-/* product:Produit ={
-  produitID: 0,
-  libelle: '',
-  description: '',
-  prix: 0,
-  image: '',
 
-} */;
-onSubmit(){
+  onSubmit(){
+    this._productsService.addProduct(this.product).subscribe(resp =>{
+      console.log(resp);
 
-}
+    })
+
+  }
 }

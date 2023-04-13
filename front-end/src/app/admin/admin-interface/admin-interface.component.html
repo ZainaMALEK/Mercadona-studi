@@ -25,7 +25,7 @@
 
     <div class="form-group">
       <label for="category">Catégorie:</label>
-      <select>
+      <select  [(ngModel)]="product.categorieID"  name="categorieID">
         <option *ngFor="let categorie of categories" [value]="categorie.categorieID">{{ categorie.libelle }}</option>
       </select>
 
@@ -33,13 +33,14 @@
 
     <div class="form-group">
       <label for="category">Promotion:</label>
-      <select>
-        <option *ngFor="let promotion of promotions" [value]="promotion.promotionID">{{ promotion.remise }} %</option>
+      <select [(ngModel)]="product.promotionID" name="promotionID" >
+        <option  *ngFor="let promotion of promotions" [value]="promotion.promotionID">{{ promotion.remise }} %</option>
       </select>
 
     </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Ajouter le produit</button>
+    <p>{{productForm.value | json}}</p>
   </form>
 </div>
 

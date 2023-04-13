@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Backend.Models.Ressources.Login
+namespace Backend.Models.Mappers.Login
 {
     
     public class LoginModel
     {
-        public string? login { get; set; }
+        public string? Login { get; set; }
         public string? Password { get; set; }
     }
     public class AuthenticatedResponse

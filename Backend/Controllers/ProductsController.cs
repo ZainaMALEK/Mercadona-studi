@@ -1,4 +1,5 @@
 ﻿using Backend.Models;
+using Backend.Models.Mappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -41,6 +42,27 @@ namespace Backend.Controllers
         {
             var result = _context.Produits.ToList();
             return Ok(result);
+        }
+
+        [HttpPost("addProduct")]
+        public IActionResult AddProduct(ProductMapper productM)
+        {
+            var categorie = _context.Categories.Where(c => c.CategorieID == productM.CategorieID).FirstOrDefault();
+            var product = new Produit();
+            product.Libelle = productM.Libelle;
+            product.Description = productM.Description;
+            product.Image = productM.Image;
+            product.Prix = productM.Prix;
+            product.Categorie = categorie;
+            if (productM.PromotionID > 0)
+            {
+                var promotion = _context.Promotions.Where(p => p.PromotionID == productM.PromotionID).FirstOrDefault();
+                product.Promotion = promotion;
+            }
+            _context.Produits.Add(product);
+            _context.SaveChanges();
+
+            return Ok(product);
         }
     }
 }
