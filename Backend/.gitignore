@@ -21,3 +21,5 @@ Version.cpp
 *.pdb
 *.manifest
 *.cache
+obj/*
+.suo
