@@ -13,29 +13,31 @@ export class AdminInterfaceComponent {
 
   }
   ngOnInit(){
-    this._productsService.getCategories().subscribe(cat=>{
-      this.categories = cat;
-      console.log(this.categories);
+
+    this._productsService.getProducts().subscribe(p=>{
+      this.products = p;
+      console.log(this.products);
 
     });
+
+    this._productsService.getCategories().subscribe(cat=>{
+      this.categories = cat;
+    });
+
     this._productsService.getPromotions().subscribe(p=>{
       this.promotions = p;
-      console.log(this.promotions);
-
     })
+
   }
+
   imageFile: File;
   product:ProductMapper = new ProductMapper();
   categories : Categorie[];
   promotions : Promotion[];
+  products:Produit[];
 
   handleFileInput(event: any) {
-    /* const inputElement = event.target as HTMLInputElement;
-    const files = inputElement.files;
-    if (files != null && files.length > 0) {
-      const file = files[0];
-      this.product.image = file;
-    } */
+
     const files: File[] = event.target.files;
     this.product.image = files[0];
   }
@@ -55,8 +57,9 @@ export class AdminInterfaceComponent {
 
     console.log(this.product.image);
 
-    this._productsService.addProduct(formData).subscribe(resp => {
-      console.log(resp);
+    this._productsService.addProduct(formData).subscribe(product => {
+      console.log(product);
+      this.products.unshift(product)
     }, error => {
       console.log(error);
     });

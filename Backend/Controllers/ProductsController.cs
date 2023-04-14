@@ -44,7 +44,7 @@ namespace Backend.Controllers
         [HttpGet("products")]
         public IActionResult GetProducts()
         {
-            var result = _context.Produits.ToList();
+            var result = _context.Produits.ToList().OrderByDescending(p => p.ProduitID);
             return Ok(result);
         }
 

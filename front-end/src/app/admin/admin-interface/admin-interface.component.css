@@ -1,38 +1,33 @@
-.product-form {
+/* .product-form {
   max-width: 500px;
   margin: auto;
-}
+} */
 
-.form-group {
-  margin-bottom: 20px;
-}
 
-label {
-  font-weight: bold;
-}
+  textarea {
+    height: 6em; /* Définissez la hauteur de l'élément description à 10em */
+  }
 
-input[type="text"],
-textarea,
-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 16px;
-}
+  input[type="file"], select, input[type="number"] {
+    width: 100%; /* Définissez la largeur de ces éléments à 100% */
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    height: 2em;
+    font-size: 01em;
+  }
 
-button[type="submit"] {
-  background-color: #007bff;
-  border: none;
-  color: #fff;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
+  select {
+    height: 2em;
+  }
+button{
+  height: 2em;
+    margin: 0 auto;
+    font-size: 1.2em;
+    line-height: normal;
 }
+.products{
+  height: 75vh;
+  overflow-x: unset;
+  overflow-y: scroll;
 
-button[type="submit"]:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
