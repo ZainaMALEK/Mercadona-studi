@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationComponent } from './admin/authentication/authentication.component';
 import { AdminInterfaceComponent } from './admin/admin-interface/admin-interface.component';
 import { NavbarComponent } from './admin/navbar/navbar.component';
+import { PromotionsComponent } from './admin/promotions/promotions.component';
+import { CategoriesComponent } from './admin/categories/categories.component';
+import { ProduitsComponent } from './admin/produits/produits.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { NavbarComponent } from './admin/navbar/navbar.component';
     AuthenticationComponent,
     AdminInterfaceComponent,
     NavbarComponent,
+    PromotionsComponent,
+    CategoriesComponent,
+    ProduitsComponent,
 
   ],
   imports: [
