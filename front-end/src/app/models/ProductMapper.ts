@@ -5,7 +5,7 @@
       libelle: string;
       description: string;
       prix: number;
-      image: string;
+      image: File;
       categorieID: number ;
       promotionID: number;
     }

@@ -2,7 +2,7 @@
 <div class="container">
   <h5 class="text-center">Ajouter un produit</h5>
 
-  <form class="product-form" (ngSubmit)="onSubmit()" #productForm="ngForm">
+  <form class="product-form" (ngSubmit)="onSubmit()" #productForm="ngForm" enctype="multipart/form-data">
     <div class="form-group">
       <label for="libelle">Nom du produit:</label>
       <input type="text" id="libelle" name="libelle" class="form-control" [(ngModel)]="product.libelle" required>
@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <label for="libelle">Image</label>
-      <input type="file" id="img" name="image" class="form-control" [(ngModel)]="product.image" accept="image/*" required>
+      <input type="file" id="img" name="image" class="form-control"  accept="image/*" required (change)="handleFileInput($event)">
     </div>
 
     <div class="form-group">
@@ -40,7 +40,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Ajouter le produit</button>
-    <p>{{productForm.value | json}}</p>
+    <p>{{product | json}}</p>
   </form>
 </div>
 
