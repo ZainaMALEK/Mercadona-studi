@@ -18,4 +18,11 @@ export class Promotion {
   debut: Date;
   fin: Date;
   remise: number;
+
+  constructor(debut: Date, fin: Date, remise: number) {
+    this.promotionID = 0;
+    this.debut = debut;
+    this.fin = fin;
+    this.remise = remise;
+  }
 }

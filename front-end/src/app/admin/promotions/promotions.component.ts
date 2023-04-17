@@ -13,8 +13,28 @@ export class PromotionsComponent {
       this.promotions = promo ;
       console.log(promo);
 
+
     })
+
   }
   promotions :Promotion[];
+  today = new Date();
+  startDate: Date =  new Date();
+  endDate: Date =new Date();
+  remise:number;
+
+  submitForm() {
+
+    let promoMap = new Promotion(this.startDate, this.endDate, this.remise);
+    this._productService.addPromotion(promoMap).subscribe(data =>{
+      console.log(data);
+      this.promotions.unshift(data)
+
+    },
+    error => {
+      console.log("Une erreur s'est produite : ", error);
+    })
+  }
+
 
 }

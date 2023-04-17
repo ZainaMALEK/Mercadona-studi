@@ -3,7 +3,21 @@
     <div class="col-md-6">
       <div class="text-center">
         <h5>Ajouter une promotion</h5>
-
+          <form #promoForm = ngForm (submit)="submitForm()">
+            <div >
+              <label for = "startDate">Date de début</label>
+              <input  class="form-control" name = "startDate" type="date"  [(ngModel)]="startDate" [min]="today | date:'yyyy-MM-dd'" required>
+            </div>
+            <div >
+              <label for = "endDate">Date de fin</label>
+              <input  class="form-control" name = "endDate" type="date" [(ngModel)]="endDate"  [min]="startDate| date:'yyyy-MM-dd' " required>
+            </div>
+            <div >
+              <label for = "remise">Remise</label>
+              <input class="form-control" name = "remise" type="number" [(ngModel)] = "remise" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-1" [disabled]="!promoForm.valid">Enregistrer</button>
+          </form>
       </div>
 
     </div>
