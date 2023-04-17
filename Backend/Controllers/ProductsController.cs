@@ -16,14 +16,14 @@ namespace Backend.Controllers
     {
         private readonly Db_Context _context;
         private string pathImages = @"C:\Mercadona\images";
-        public  ProductsController(Db_Context context)
+        public ProductsController(Db_Context context)
         {
             _context = context;
         }
 
         [HttpGet("testApi")]
         public string testApi()
-        {    
+        {
             return "api ok";
         }
 
@@ -44,8 +44,32 @@ namespace Backend.Controllers
         [HttpGet("products")]
         public IActionResult GetProducts()
         {
-            var result = _context.Produits.ToList().OrderByDescending(p => p.ProduitID);
-            return Ok(result);
+            var results = _context.Produits.ToList();
+            try
+            {
+                var result = _context.Produits
+            .Select(p => new
+            {
+                produitID = p.ProduitID,
+                libelle = p.Libelle,
+                description = p.Description,
+                prix = p.Prix,
+                image = Convert.ToBase64String(System.IO.File.ReadAllBytes(p.ImagePath)),
+                categorie = p.Categorie,
+                promotion = p.Promotion
+            })
+            .ToList()
+            .OrderByDescending(p => p.produitID);
+                return Ok(result);
+            }
+            catch(Exception err)
+            {
+                Console.WriteLine(err.Message); 
+                return StatusCode(500);
+            }
+
+
+            
         }
 
         [HttpPost("addProduct")]
@@ -80,7 +104,7 @@ namespace Backend.Controllers
                 }
                 // Mettre à jour le chemin d'accès du fichier dans la base de données
                 product.ImagePath = filePath;
-               
+
             }
             _context.Produits.Add(product);
             await _context.SaveChangesAsync();
