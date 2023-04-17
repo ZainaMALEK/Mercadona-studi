@@ -1,1 +1,36 @@
-<p>promotions works!</p>
+<div class="container">
+  <div class="row pt-2">
+    <div class="col-md-6">
+      <div class="text-center">
+        <h5>Ajouter une promotion</h5>
+
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="text-center">
+
+        <h5>Liste des promotions</h5>
+        <table class="table">
+          <thead>
+            <tr>
+
+              <th scope="col">Date de début</th>
+              <th scope="col">Date de fin</th>
+              <th scope="col">Remise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let promo of promotions">
+
+              <td>{{promo.debut  | date: 'dd/MM/yyyy'}}</td>
+              <td>{{promo.fin  | date: 'dd/MM/yyyy'}}</td>
+              <td>{{promo.remise}} %</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
