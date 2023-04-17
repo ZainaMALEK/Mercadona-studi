@@ -68,7 +68,7 @@ export class CatalogueComponent {
 }
 
   ApplyPromo( price : number,  promo:number){
-    return (price * promo) / 100;
+    return price - ((price * promo) / 100);
   }
 
   setAll(completed: boolean) {
