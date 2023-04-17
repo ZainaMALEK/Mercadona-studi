@@ -3,19 +3,19 @@
 
   <div class="all-container row">
     <div class="col-md-2">
+
       <section class="filters-section">
         <span class="">
-          <mat-checkbox class="" [checked]="allComplete" [color]="task.color" [indeterminate]="someComplete()"
+          <mat-checkbox class="" checked
             (change)="setAll($event.checked)">
-            {{task.name}}
+            Tout
           </mat-checkbox>
         </span>
         <span class="">
 
-            <div *ngFor="let subtask of task.categories">
-              <mat-checkbox [(ngModel)]="subtask.completed" [color]="subtask.color"
-                (ngModelChange)="updateAllComplete()">
-                {{subtask.libelle}}
+            <div *ngFor="let cat of categoryChecker.categories">
+              <mat-checkbox [(ngModel)]="cat.completed" >
+                {{cat.libelle}}
               </mat-checkbox>
             </div>
 
@@ -26,7 +26,7 @@
       <div class="row">
         <div *ngFor="let p of products" class="col-md-3 item">
           <div *ngIf="getSelectedCategories().includes(p.categorie.libelle)" class="card">
-            <img class="card-img" src="assets/images/sneakers.webp" alt="Card image cap">
+            <img class="card-img" [src]="'data:image/png;base64,' + p.image" alt="Card image cap">
             <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>
             <div class="card-body">
               <h5 class="card-title">{{p.libelle}}</h5>
