@@ -1,1 +1,36 @@
-<p>categories works!</p>
+
+
+
+<div class="container">
+  <div class="row mt-2" >
+    <div class="col-md-6  mb-2 text-center">
+      <h5>Ajouter une catégorie : </h5>
+
+      <form #catForm="ngForm" (ngSubmit)="submit()">
+        <input class="form-control" type ="text" name="libelle" [(ngModel)] = "libelle"><br>
+        <button type = "submit" class="btn btn-primary" [disabled] = "libelle == null || libelle == '' ">Enregistrer</button>
+       <!--  {{catForm.value|json}} -->
+      </form>
+
+    </div>
+    <div class="col-md-6 text-center">
+      <h5>Liste des catégories</h5>
+      <div *ngFor="let cat of categories">
+     <!--    <p>{{cat.libelle}}</p> -->
+
+
+
+
+
+      <div class="card mb-1 shadow-sm">
+        <div class="card-body">
+          <p class="card-title">{{cat.libelle}}</p>
+
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+</div>

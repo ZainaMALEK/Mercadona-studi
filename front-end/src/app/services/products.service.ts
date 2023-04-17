@@ -2,6 +2,7 @@ import { ProductMapper } from './../models/ProductMapper';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Promotion } from '../models/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,21 @@ export class ProductsService {
   getPromotions(): Observable<any> {
     return this.http.get<any>('http://localhost:9070/api/Products/promotions');
   }
-  /* addProduct(product:any): Observable<any> {
-    const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
-    return this.http.post<any>('http://localhost:9070/api/Products/addProduct', product, { headers });
-  } */
 
   addProduct(formData: FormData): Observable<any> {
 
-    const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
+   // const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
     return this.http.post<any>('http://localhost:9070/api/Products/addProduct', formData);
+  }
+
+  addCategorie(libelle: string): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post<any>('http://localhost:9070/api/Products/addCategorie', `"${libelle}"`, { headers: headers });
+  }
+
+
+  addPromotion(promo : Promotion): Observable<any> {
+
+    return this.http.post<any>('http://localhost:9070/api/Products/addPromotion', promo);
   }
 }

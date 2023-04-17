@@ -87,5 +87,27 @@ namespace Backend.Controllers
 
             return Ok(product);
         }
+
+        [HttpPost("addCategorie")]
+        public IActionResult AddCategorie([FromBody] string libelle)
+        {
+            var categorie = new Categorie();
+            categorie.Libelle = libelle;
+            _context.Categories.Add(categorie);
+            _context.SaveChanges();
+            return Ok(categorie);
+        }
+
+        [HttpPost("addPromotion")]
+        public IActionResult AddPromotion(Promotion promotion)
+        {
+            var prom = new Promotion();
+            prom.Debut = promotion.Debut;
+            prom.Fin = promotion.Fin;
+            prom.Remise = promotion.Remise;
+            _context.Promotions.Add(prom);
+            _context.SaveChanges();
+            return Ok(prom);
+        }
     }
 }
