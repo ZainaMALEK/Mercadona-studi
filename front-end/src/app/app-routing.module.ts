@@ -6,10 +6,11 @@ import { AdminInterfaceComponent } from './admin/admin-interface/admin-interface
 import { PromotionsComponent } from './admin/promotions/promotions.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { ProduitsComponent } from './admin/produits/produits.component';
+import { AuthenticationService } from './services/authentication.service';
 
 const routes: Routes = [
   { path: 'Admin', component: AuthenticationComponent },
-  { path: 'AdminInterface', component: AdminInterfaceComponent ,
+  { path: 'AdminInterface', component: AdminInterfaceComponent , canActivate: [AuthenticationService],
   children: [
     { path: 'promotions', component: PromotionsComponent },
     { path: 'categories', component: CategoriesComponent },

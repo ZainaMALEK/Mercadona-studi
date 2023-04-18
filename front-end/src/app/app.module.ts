@@ -14,6 +14,12 @@ import { NavbarComponent } from './admin/navbar/navbar.component';
 import { PromotionsComponent } from './admin/promotions/promotions.component';
 import { CategoriesComponent } from './admin/categories/categories.component';
 import { ProduitsComponent } from './admin/produits/produits.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthenticationService } from './services/authentication.service';
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -33,9 +39,18 @@ import { ProduitsComponent } from './admin/produits/produits.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5001"],
+        disallowedRoutes: []
+      }
+    })
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
