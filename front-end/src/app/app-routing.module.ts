@@ -14,7 +14,8 @@ const routes: Routes = [
   children: [
     { path: 'promotions', component: PromotionsComponent },
     { path: 'categories', component: CategoriesComponent },
-    { path: 'produits', component: ProduitsComponent}
+    { path: 'produits', component: ProduitsComponent},
+    { path: '', component: CatalogueComponent}
   ]},
   { path: '', component: CatalogueComponent },
 

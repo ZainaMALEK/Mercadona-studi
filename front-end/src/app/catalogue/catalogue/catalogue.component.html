@@ -1,54 +1,62 @@
 <div class="container-fluid">
-<div class="title-container">
+  <div class="spinner-container" *ngIf="products.length <0;else readyProducts ">
 
-  <h5 class="text-center pt-3 pb-1 title">Notre catalogue de produits Mercadona</h5>
-</div>
+    <img src="assets/images/loader.gif">
+  </div>
+  <ng-template #readyProducts class="catalogue">
 
-  <div class="all-container row">
-    <div class="col-md-2">
+    <div class="title-container">
 
-      <section class="filters-section">
-        <span class="">
-          <mat-checkbox #all checked
-            (change)="setAll($event.checked)">
-            Tout
-          </mat-checkbox>
-        </span>
-        <span class="">
+      <h5 class="text-center pt-3 pb-1 title">Notre catalogue de produits Mercadona</h5>
 
-            <div *ngFor="let cat of categoryChecker.categories" >
-              <mat-checkbox [(ngModel)]="cat.completed" (change)="uncheckAllCheckbox($event)">
-                {{cat.libelle}}
-              </mat-checkbox>
-            </div>
-
-        </span>
-      </section>
     </div>
-    <div class="col-md-10">
-      <div class="row">
-        <div *ngFor="let p of products" class="col-md-3 item">
-          <div *ngIf="getSelectedCategories().includes(p.categorie.libelle)" class="card">
-            <h5 class="card-title">{{p.libelle  | titlecase}}</h5>
-            <div class="img-container">
-              <img class="card-img" [src]="'data:image/png;base64,' + p.image" alt="Card image cap">
-            </div>
 
-            <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>
-            <div class="card-body">
+      <div class="all-container row">
+        <div class="col-md-2">
 
-              <div class="promo-text" *ngIf="p.promotion">Promo du <span>{{p.promotion.debut | date : "dd-MM-yy"}} au
-                  {{p.promotion.fin | date : "dd-MM-yy"}}</span> </div>
-              <div><span [ngClass]="{'line': p.promotion.remise > 0}">{{p.prix}}</span> $ <span
-                  *ngIf="p.promotion">{{ApplyPromo(p.prix, p.promotion.remise)}} $</span></div>
-              <p class="card-text">{{p.description}}</p>
+          <section class="filters-section">
+            <span class="">
+              <mat-checkbox #all checked
+                (change)="setAll($event.checked)">
+                Tout
+              </mat-checkbox>
+            </span>
+            <span class="">
 
+                <div *ngFor="let cat of categoryChecker.categories" >
+                  <mat-checkbox [(ngModel)]="cat.completed" (change)="uncheckAllCheckbox($event)">
+                    {{cat.libelle}}
+                  </mat-checkbox>
+                </div>
+
+            </span>
+          </section>
+        </div>
+        <div class="col-md-10">
+          <div class="row">
+            <div *ngFor="let p of products" class="col-md-3 item">
+              <div *ngIf="getSelectedCategories().includes(p.categorie.libelle)" class="card">
+                <h5 class="card-title">{{p.libelle  | titlecase}}</h5>
+                <div class="img-container">
+                  <img class="card-img" [src]="'data:image/png;base64,' + p.image" alt="Card image cap">
+                </div>
+
+                <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>
+                <div class="card-body">
+
+                  <div class="promo-text" *ngIf="p.promotion">Promo du <span>{{p.promotion.debut | date : "dd-MM-yy"}} au
+                      {{p.promotion.fin | date : "dd-MM-yy"}}</span> </div>
+                  <div><span [ngClass]="{'line': p.promotion.remise > 0}">{{p.prix}}</span> $ <span
+                      *ngIf="p.promotion">{{ApplyPromo(p.prix, p.promotion.remise)}} $</span></div>
+                  <p class="card-text">{{p.description}}</p>
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+  </ng-template>
 
 
 

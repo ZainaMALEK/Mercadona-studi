@@ -62,3 +62,9 @@ ul {
 .card-text{
   border-top: #edc6a6 solid;
 }
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* ou une hauteur fixe si vous préférez */
+}
