@@ -22,6 +22,7 @@ export class AuthenticationService {
 
   logOut = () => {
     localStorage.removeItem("jwt");
+    this.router.navigate([""]);
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

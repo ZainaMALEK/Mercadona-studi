@@ -17,7 +17,7 @@
               <input class="form-control" name = "remise" type="number" [(ngModel)] = "remise" required>
             </div>
             <button type="submit" class="btn btn-primary mt-1" [disabled]="!promoForm.valid">Enregistrer</button>
-            <div style="color:red" *ngIf="errorDate">La date de début de promotion doit être inférieure à la date de début de promotion</div>
+            <div style="color:red" *ngIf="errorDate">La date de début de promotion doit être inférieure à la date de fin de promotion</div>
           </form>
       </div>
 

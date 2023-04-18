@@ -1,5 +1,6 @@
 ﻿using Backend.Models;
 using Backend.Models.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -70,6 +71,7 @@ namespace Backend.Controllers
   
         }
 
+        [Authorize]
         [HttpPost("addProduct")]
         public async Task<IActionResult> AddProduct([FromForm] ProductMapper productM)
         {
@@ -110,6 +112,7 @@ namespace Backend.Controllers
             return Ok(product);
         }
 
+        [Authorize]
         [HttpPost("addCategorie")]
         public IActionResult AddCategorie([FromBody] string libelle)
         {
@@ -120,6 +123,7 @@ namespace Backend.Controllers
             return Ok(categorie);
         }
 
+        [Authorize]
         [HttpPost("addPromotion")]
         public IActionResult AddPromotion(Promotion promotion)
         {
