@@ -13,7 +13,7 @@
 
           <div class="form-group">
             <label for="description">Description:</label>
-            <textarea id="description" name="description" class="form-control" [(ngModel)]="product.description"
+            <textarea id="description" name="description" class="form-control" [(ngModel)]="product.description" maxlength="200"
               required></textarea>
           </div>
 
@@ -30,7 +30,7 @@
 
           <div class="form-group">
             <label for="category">Catégorie:</label>
-            <select [(ngModel)]="product.categorieID" name="categorieID">
+            <select [(ngModel)]="product.categorieID" name="categorieID" class="form-control">
               <option *ngFor="let categorie of categories" [value]="categorie.categorieID">{{ categorie.libelle }}
               </option>
             </select>
@@ -39,7 +39,7 @@
 
           <div class="form-group">
             <label for="category">Promotion:</label>
-            <select [(ngModel)]="product.promotionID" name="promotionID">
+            <select [(ngModel)]="product.promotionID" name="promotionID" class="form-control">
               <option *ngFor="let promotion of promotions" [value]="promotion.promotionID">{{ promotion.remise }} %
               </option>
             </select>

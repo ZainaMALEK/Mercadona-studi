@@ -1,18 +1,14 @@
-/* .product-form {
-  max-width: 500px;
-  margin: auto;
-} */
 
 
 textarea {
-  height: 6em; /* Définissez la hauteur de l'élément description à 10em */
+  height: 6em;
 }
 
-input[type="file"], select, input[type="number"] {
-  width: 100%; /* Définissez la largeur de ces éléments à 100% */
+input, select{
+  width: 100%;
   padding: 0.5em;
   border: 1px solid #ccc;
-  height: 2em;
+  height: 2.6em !important;
   font-size: 01em;
 }
 
@@ -38,7 +34,7 @@ overflow-y: scroll;
 display: flex;
 align-items: center;
 justify-content: center;
-height: 80vh; /* ou une hauteur fixe si vous préférez */
+height: 80vh;
 }
 
 .product-form {

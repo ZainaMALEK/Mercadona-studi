@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CatalogueComponent } from './catalogue/catalogue/catalogue.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ import { CategoriesComponent } from './admin/categories/categories.component';
 import { ProduitsComponent } from './admin/produits/produits.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthenticationService } from './services/authentication.service';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -48,7 +49,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

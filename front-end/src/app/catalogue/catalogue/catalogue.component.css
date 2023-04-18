@@ -1,11 +1,15 @@
 .card-img{
   width: 11rem;
-  height: 11rem;
+  height: 9rem;
   margin: 0 auto;
 }
 
 .card{
-  text-align : center;
+  text-align: center;
+  max-height: 20rem;
+  overflow: hidden;
+  height: 20rem;
+  border: unset;
 }
 p{
   font-size: 0.8rem;
@@ -14,11 +18,12 @@ p{
   margin-bottom: 1%;
 }
 .promo-text{
-  font-size: 0.7em;
-    color: #e14a1a;
+  font-size: 0.8em;
+  color: #edc6a6;
+  font-weight: 900;
 }
 .promo-div{
-  background-color: #F44336;
+  background-color: #dfa97d;
   width: max-content;
   position: absolute;
   left: 1rem;
@@ -32,4 +37,28 @@ p{
 ul {
   list-style-type: none;
   margin-top: 4px;
+}
+
+.container-fluid{
+  background: #f0f1f1;
+  min-height: 100vh;
+}
+.card-title {
+  font-size: 1.3em;
+  padding: 4%;
+  padding-top: 10%;
+}
+.title{
+  font-size: x-large;
+  padding: 2%;
+  font-weight: 900;
+}
+.title-container{
+  padding: 2vh;
+}
+.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
+  background-color: #229099;
+}
+.card-text{
+  border-top: #edc6a6 solid;
 }

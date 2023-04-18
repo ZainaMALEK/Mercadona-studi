@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <h5 class="text-center pt-3 pb-1">Notre catalogue de produits Mercadona</h5>
+<div class="title-container">
+
+  <h5 class="text-center pt-3 pb-1 title">Notre catalogue de produits Mercadona</h5>
+</div>
 
   <div class="all-container row">
     <div class="col-md-2">
@@ -26,10 +29,14 @@
       <div class="row">
         <div *ngFor="let p of products" class="col-md-3 item">
           <div *ngIf="getSelectedCategories().includes(p.categorie.libelle)" class="card">
-            <img class="card-img" [src]="'data:image/png;base64,' + p.image" alt="Card image cap">
+            <h5 class="card-title">{{p.libelle  | titlecase}}</h5>
+            <div class="img-container">
+              <img class="card-img" [src]="'data:image/png;base64,' + p.image" alt="Card image cap">
+            </div>
+
             <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>
             <div class="card-body">
-              <h5 class="card-title">{{p.libelle}}</h5>
+
               <div class="promo-text" *ngIf="p.promotion">Promo du <span>{{p.promotion.debut | date : "dd-MM-yy"}} au
                   {{p.promotion.fin | date : "dd-MM-yy"}}</span> </div>
               <div><span [ngClass]="{'line': p.promotion.remise > 0}">{{p.prix}}</span> $ <span
