@@ -67,9 +67,7 @@ namespace Backend.Controllers
                 Console.WriteLine(err.Message); 
                 return StatusCode(500);
             }
-
-
-            
+  
         }
 
         [HttpPost("addProduct")]

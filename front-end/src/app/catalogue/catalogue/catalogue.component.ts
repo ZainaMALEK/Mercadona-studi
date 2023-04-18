@@ -2,7 +2,7 @@ import { Produit } from 'src/app/models/Product';
 import { ProductsService } from './../../services/products.service';
 import { Component } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 export interface Categorie {
