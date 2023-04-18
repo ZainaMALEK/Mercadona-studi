@@ -1,7 +1,8 @@
 import { Produit } from 'src/app/models/Product';
 import { ProductsService } from './../../services/products.service';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 
 
@@ -19,6 +20,7 @@ export interface Categorie {
 })
 
 export class CatalogueComponent {
+  @ViewChild('all', { static: false }) all: MatCheckbox;
   categories!: Categorie[]
   products:Produit[] = [];
 
@@ -82,6 +84,17 @@ export class CatalogueComponent {
 
   getSelectedCategories(): string[] {
     return this.categoryChecker.categories.filter((c:any) => c.completed).map((c:any) => c.libelle);
+  }
+
+  uncheckAllCheckbox($event :any){
+    console.log("hello");
+    if (this.all && this.all) {
+      const check = this.all;
+      check.checked = false;
+
+    }
+
+
   }
 }
 

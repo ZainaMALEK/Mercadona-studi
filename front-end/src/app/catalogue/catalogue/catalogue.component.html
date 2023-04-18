@@ -6,15 +6,15 @@
 
       <section class="filters-section">
         <span class="">
-          <mat-checkbox class="" checked
+          <mat-checkbox #all
             (change)="setAll($event.checked)">
             Tout
           </mat-checkbox>
         </span>
         <span class="">
 
-            <div *ngFor="let cat of categoryChecker.categories">
-              <mat-checkbox [(ngModel)]="cat.completed" >
+            <div *ngFor="let cat of categoryChecker.categories" >
+              <mat-checkbox [(ngModel)]="cat.completed" (change)="uncheckAllCheckbox($event)">
                 {{cat.libelle}}
               </mat-checkbox>
             </div>
