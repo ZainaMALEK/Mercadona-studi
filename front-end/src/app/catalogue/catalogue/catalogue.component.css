@@ -56,8 +56,8 @@ ul {
 .title-container{
   padding: 2vh;
 }
-.mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
-  background-color: #229099;
+::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
+  background-color: red;
 }
 .card-text{
   border-top: #edc6a6 solid;

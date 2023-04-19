@@ -23,7 +23,8 @@ export class CatalogueComponent {
   @ViewChild('all', { static: false }) all: MatCheckbox;
   categories!: Categorie[]
   products:Produit[] = [];
-
+  selectedCategories :number[];
+  filteredProducts:Produit[];
   categoryChecker: any = {
     name: 'Tout',
     completed: true,
@@ -43,6 +44,7 @@ export class CatalogueComponent {
         next:  (data: Produit[]) => {
           this.products = data;
           console.log(data);
+          this.filteredProducts = data;
 
         },
         error: error => {
@@ -80,21 +82,32 @@ export class CatalogueComponent {
       return;
     }
     this.categoryChecker.categories.forEach((t:any) => (t.completed = completed));
+    this.filterProducts();
   }
 
   getSelectedCategories(): string[] {
     return this.categoryChecker.categories.filter((c:any) => c.completed).map((c:any) => c.libelle);
   }
 
-  uncheckAllCheckbox($event :any){
+  /* uncheckAllCheckbox($event :any){
     console.log("hello");
-    if (this.all && this.all) {
+    if (this.all ) {
       const check = this.all;
       check.checked = false;
-
     }
+  } */
+  filterProducts(){
 
 
+    this.filteredProducts = this.products.filter(p => this.getSelectedCategories().includes( p.categorie.libelle) );
+    console.log(this.categoryChecker.categories);
+    console.log(this.getSelectedCategories());
+
+
+     if (this.all.checked==true && (this.categoryChecker.categories.length != this.getSelectedCategories().length)) {//et une des categories n'est pas cochée
+
+      this.all.checked = false;
+    }
   }
 }
 
