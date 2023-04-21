@@ -24,3 +24,18 @@ jobs:
         run:  |
           cd Backend
           dotnet build -c Release --no-restore
+
+      - name: publish App
+        run:  |
+          cd Backend
+          dotnet publish -c Release -o ./out
+
+      - name: Deploy to Azure WebApp
+        uses: Azure/webapps-deploy@v2
+        with: 
+          app-name: mercadona-zaina
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
+
+
+
+        
