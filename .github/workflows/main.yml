@@ -21,4 +21,4 @@ jobs:
         run: dotnet restore Backend/Backend.csproj
 
       - name: Build App
-        run: dotnet build -c Release --no-restore
+        run: dotnet build -c Release /p:ProjectPath=Backend/Backend.csproj --no-restore
