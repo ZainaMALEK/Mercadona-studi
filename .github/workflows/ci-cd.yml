@@ -25,20 +25,20 @@ jobs:
       - name: Restore dependencies
         run: |
           
-          cd mercadona-api
+          cd api
           ls
           dotnet restore 
 
       - name: Build App
         run:  |
           
-          cd mercadona-api
+          cd api
           dotnet build -c Release --no-restore
 
       - name: publish App
         run:  |
           
-          cd mercadona-api
+          cd api
           dotnet publish -c Release -o ./out 
 
       - name: Deploy to Azure WebApp
