@@ -33,7 +33,8 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: Azure/webapps-deploy@v2
         with: 
-          app-name: mercadona-zaina
+          app-name: 'mercadona-zaina'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
 
 
