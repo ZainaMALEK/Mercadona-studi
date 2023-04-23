@@ -18,16 +18,16 @@ jobs:
           dotnet-version: "5.0.x"
 
       - name: Restore dependencies
-        run: dotnet restore Backend/Backend.csproj
+        run: dotnet restore mercadona-api/Backend.csproj
 
       - name: Build App
         run:  |
-          cd Backend
+          cd mercadona-api
           dotnet build -c Release --no-restore
 
       - name: publish App
         run:  |
-          cd Backend
+          cd mercadona-api
           dotnet publish -c Release -o ./out --runtime linux-x64
 
       - name: Deploy to Azure WebApp
