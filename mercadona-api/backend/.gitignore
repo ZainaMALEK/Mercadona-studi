@@ -22,4 +22,5 @@ Version.cpp
 *.manifest
 *.cache
 obj/*
+.vs/
 .suo
