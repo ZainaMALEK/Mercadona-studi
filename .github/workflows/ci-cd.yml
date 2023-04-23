@@ -26,6 +26,7 @@ jobs:
         run: |
           
           cd mercadona-api
+          ls
           dotnet restore 
 
       - name: Build App
