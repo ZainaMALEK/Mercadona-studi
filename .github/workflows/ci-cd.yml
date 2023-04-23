@@ -18,7 +18,9 @@ jobs:
           dotnet-version: "6.0.x"
 
       - name: Show current working directory
-        run: pwd
+        run: |
+          pwd
+          ls
 
       - name: Restore dependencies
         run: |
