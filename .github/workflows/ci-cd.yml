@@ -21,11 +21,13 @@ jobs:
         run: dotnet restore mercadona-api/backend.csproj
 
       - name: Build App
-        run: 
+        run:  |
+          cd mercadona-api
           dotnet build -c Release --no-restore
 
       - name: publish App
-        run: 
+        run:  |
+          cd mercadona-api
           dotnet publish -c Release -o ./out 
 
       - name: Deploy to Azure WebApp
