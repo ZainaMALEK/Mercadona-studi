@@ -24,19 +24,19 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          cd ..
+          
           cd mercadona-api
           dotnet restore 
 
       - name: Build App
         run:  |
-          cd ..
+          
           cd mercadona-api
           dotnet build -c Release --no-restore
 
       - name: publish App
         run:  |
-          cd ..
+          
           cd mercadona-api
           dotnet publish -c Release -o ./out 
 
