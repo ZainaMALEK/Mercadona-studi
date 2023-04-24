@@ -43,7 +43,7 @@ jobs:
         run:  |
           
           cd api
-          dotnet publish ./api.sln -c Release -o ./out 
+          dotnet publish ./api.sln -c Release --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
 
       - name: Deploy to Azure WebApp
         uses: Azure/webapps-deploy@v2
