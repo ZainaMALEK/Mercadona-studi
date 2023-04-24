@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+      
+env:
+  AZURE_WEBAPP_NAME: Mercadona-api
+  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
 
 jobs:
   build:
@@ -33,20 +37,20 @@ jobs:
         run:  |
           
           cd api
-          dotnet build -c Release --no-restore
+          dotnet build ./api.sln -c Release --no-restore 
 
       - name: publish App
         run:  |
           
           cd api
-          dotnet publish -c Release -o ./out 
+          dotnet publish ./api.sln -c Release -o ./out 
 
       - name: Deploy to Azure WebApp
         uses: Azure/webapps-deploy@v2
         with: 
-          app-name: 'Mercadona-api'
-          slot-name: 'Production'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
+          package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
 
 
 
