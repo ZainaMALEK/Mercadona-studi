@@ -1,4 +1,4 @@
-/*var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
@@ -13,8 +13,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-*/
-var builder = WebApplication.CreateBuilder(args);
+
+/*var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -26,7 +26,5 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-// GET UTC
-app.MapGet("time/utc", () => Results.Ok(DateTime.UtcNow));
 
-await app.RunAsync();
+await app.RunAsync();*/
