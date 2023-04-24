@@ -38,7 +38,7 @@ jobs:
         run:  |
           
           cd api
-          dotnet publish ./api.sln -c Release --no-build --output ./api/publish
+          dotnet publish ./api.sln -c Release --no-build --output ./publish
           
       - name: Show current working directory
         run: |
