@@ -24,6 +24,7 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("MyDatabase")));
 
 
+
         services.AddTransient<IImageService, ImageService>();
 
         services.AddAuthentication(opt =>

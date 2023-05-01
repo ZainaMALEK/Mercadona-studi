@@ -40,7 +40,7 @@
                 <div  class="card ">
                   <h5 class="card-title">{{p.libelle  | titlecase}}</h5>
                   <div class="img-container">
-                    <img class="card-img" [src]="'data:image/png;base64,' + p.image" alt="Card image cap">
+                    <img class="card-img" [src]="pathImages + p.image" alt="Card image cap">
                   </div>
 
                   <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>

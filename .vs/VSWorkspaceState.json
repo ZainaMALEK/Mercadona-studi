@@ -3,8 +3,12 @@
     "",
     "\\api",
     "\\api\\api",
-    "\\api\\api\\Models"
+    "\\api\\api\\Options",
+    "\\front-end\\src",
+    "\\front-end\\src\\app",
+    "\\front-end\\src\\app\\catalogue",
+    "\\front-end\\src\\app\\catalogue\\catalogue"
   ],
-  "SelectedNode": "\\api\\api\\api.csproj",
+  "SelectedNode": "\\api\\api.sln",
   "PreviewInSolutionExplorer": false
 }

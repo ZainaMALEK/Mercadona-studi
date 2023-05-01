@@ -21,8 +21,8 @@ namespace Backend.Models
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
-            optionsBuilder.UseNpgsql(connectionString);
+            //string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            //optionsBuilder.UseNpgsql(connectionString);
             optionsBuilder.UseLazyLoadingProxies();
         }
     }   

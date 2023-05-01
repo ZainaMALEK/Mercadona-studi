@@ -8,33 +8,35 @@ import { Promotion } from '../models/Product';
   providedIn: 'root'
 })
 export class ProductsService {
+  //apiUrl:string = "https://mercadona-api.azurewebsites.net/api/"
+  apiUrl:string = "http://localhost:17453/api/";
 
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<any> {
-    return this.http.get<any>('http://localhost:9070/api/Products/products');
+    return this.http.get<any>(this.apiUrl +'Products/products');
   }
   getCategories(): Observable<any> {
-    return this.http.get<any>('http://localhost:9070/api/Products/categories');
+    return this.http.get<any>(this.apiUrl +'Products/categories');
   }
   getPromotions(): Observable<any> {
-    return this.http.get<any>('http://localhost:9070/api/Products/promotions');
+    return this.http.get<any>(this.apiUrl +'Products/promotions');
   }
 
   addProduct(formData: FormData): Observable<any> {
 
    // const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
-    return this.http.post<any>('http://localhost:9070/api/Products/addProduct', formData);
+    return this.http.post<any>(this.apiUrl +'Products/addProduct', formData);
   }
 
   addCategorie(libelle: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post<any>('http://localhost:9070/api/Products/addCategorie', `"${libelle}"`, { headers: headers });
+    return this.http.post<any>(this.apiUrl +'Products/addCategorie', `"${libelle}"`, { headers: headers });
   }
 
 
   addPromotion(promo : Promotion): Observable<any> {
 
-    return this.http.post<any>('http://localhost:9070/api/Products/addPromotion', promo);
+    return this.http.post<any>(this.apiUrl +'Products/addPromotion', promo);
   }
 }

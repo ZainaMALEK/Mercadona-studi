@@ -21,6 +21,7 @@ export interface Categorie {
 
 export class CatalogueComponent {
   @ViewChild('all', { static: false }) all: MatCheckbox;
+  pathImages:string = "https://csb1003200284b3e222.blob.core.windows.net/mercadona-images/";
   categories!: Categorie[]
   products:Produit[] = [];
   selectedCategories :number[];
