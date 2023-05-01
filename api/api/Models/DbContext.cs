@@ -18,8 +18,11 @@ namespace Backend.Models
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<Utilisateur> Utilisateurs { get; set; }
 
+       
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            string connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            optionsBuilder.UseNpgsql(connectionString);
             optionsBuilder.UseLazyLoadingProxies();
         }
     }   
