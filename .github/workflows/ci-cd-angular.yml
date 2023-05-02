@@ -1,4 +1,4 @@
-name: Deploy to Azure
+name: Deploy to mercadona angular to Azure
 
 on:
   push:
@@ -35,4 +35,4 @@ jobs:
       with:
         app-name: mercadona-angular
         publish-profile: ${{ secrets.PUBLISH_PROFILE_ANGULAR }}
-        package: ./dist/front-end
+        package: ./front-end/dist/
