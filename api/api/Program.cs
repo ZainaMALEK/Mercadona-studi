@@ -58,8 +58,8 @@ public class Program
            {
                options.TokenValidationParameters = new TokenValidationParameters
                {
-                   ValidateIssuer = true,
-                   ValidateAudience = true,
+                   ValidateIssuer = false,
+                   ValidateAudience = false,
                    ValidateLifetime = true,
                    ValidateIssuerSigningKey = true,
                    ValidIssuer = "http://localhost:4200",
