@@ -49,5 +49,5 @@ jobs:
             app-name: 'mercadona-angular'
             slot-name: 'Production'
             publish-profile:  ${{ secrets.PUBLISH_PROFILE_ANGULAR }}
-            package: .
+            package: front-end/dist/front-end/
   
