@@ -21,11 +21,13 @@ namespace Backend.Controllers
         private readonly Db_Context _context;
         private readonly IImageService _imageService;
         private string pathImages = @"C:\Mercadona\images";
+        private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(Db_Context context, IImageService imageService)
+        public ProductsController(Db_Context context, IImageService imageService, ILogger<ProductsController> logger)
         {
             _context = context;
             _imageService = imageService;
+            _logger = logger;
         }
 
         [HttpGet("testApi")]
@@ -52,9 +54,9 @@ namespace Backend.Controllers
         public IActionResult GetProducts()
         {
             
-            var results = _context.Produits.ToList();
             try
             {
+                var results = _context.Produits.ToList();
                 var result = _context.Produits
             .Select(p => new
             {
@@ -73,8 +75,9 @@ namespace Backend.Controllers
             }
             catch (Exception err)
             {
-                Console.WriteLine(err.Message);
-                return StatusCode(500);
+                _logger.LogError(err.Message);
+                return StatusCode(500, err.Message);
+
             }
 
         }

@@ -8,8 +8,8 @@ import { Promotion } from '../models/Product';
   providedIn: 'root'
 })
 export class ProductsService {
-  //apiUrl:string = "https://mercadona-api.azurewebsites.net/api/"
-  apiUrl:string = "http://localhost:17453/api/";
+  apiUrl:string = "https://mercadona-api.azurewebsites.net/api/"
+  //apiUrl:string = "http://localhost:17453/api/";
 
   constructor(private http: HttpClient) { }
 

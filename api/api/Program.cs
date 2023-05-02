@@ -7,7 +7,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog.Events;
+using Serilog;
 using System.Text;
+using Azure.Storage;
+using Serilog.Sinks.AzureBlobStorage;
 
 public class Program
 {
@@ -15,6 +19,24 @@ public class Program
     {
         DotEnv.Load();
         var builder = WebApplication.CreateBuilder(args);
+        var configuration = builder.Configuration;
+        // Configuration de Serilog
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.AzureBlobStorage(
+                configuration.GetSection("Serilog:WriteTo:AzureBlobStorage:connectionString").Value,
+                configuration.GetSection("Serilog:WriteTo:AzureBlobStorage:containerName").Value,
+                configuration.GetSection("Serilog:WriteTo:AzureBlobStorage:logFileName").Value,
+                //fileSizeLimitBytes: null,
+                shared: true,
+                flushToDiskInterval: TimeSpan.FromSeconds(1))
+            .CreateLogger();
+
+        builder.Services.AddSingleton(Log.Logger);
+        builder.Host.UseSerilog();
 
         builder.Services.AddControllers();
         var services = builder.Services;
