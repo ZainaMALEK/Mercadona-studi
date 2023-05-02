@@ -27,6 +27,7 @@ jobs:
     - name: Build
       run: |
         cd front-end
+        npm install -g @angular/cli
         ng build --configuration production 
 
     - name: Deploy to Azure Web App
