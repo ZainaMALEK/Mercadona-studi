@@ -27,7 +27,7 @@ jobs:
     - name: Build
       run: |
         cd front-end
-        npm run build -- --prod
+        ng build --configuration production 
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
