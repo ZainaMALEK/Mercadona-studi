@@ -46,7 +46,7 @@ jobs:
             cd front-end
             npm install
             npm install -g @angular/cli
-            ng build --prod
+            ng build --configuration production
   
       - name: publish App
         run:   |
