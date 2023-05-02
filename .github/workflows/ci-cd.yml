@@ -16,6 +16,11 @@ jobs:
         uses: xt0rted/setup-dotnet@v1.5.0
         with:
           dotnet-version: "6.0.x"
+      
+      - name: Replace values in appsettings.json
+        run: |
+          sed -i "s|REPLACE_DATABASE_CONNECTION_STRING|${{ secrets.DB_CONNECTION_STRING }}|g" ./appsettings.json
+          sed -i "s|REPLACE_AZURE_BLOB_STORAGE_CONNECTION_STRING|${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}|g" ./appsettings.json
 
       - name: Show current working directory
         run: |
@@ -31,11 +36,26 @@ jobs:
         run:  |
           cd api
           dotnet build -c Release --no-restore
-
+      
+      
+      - name: Build Angular App
+        run: |
+            cd front-end
+            npm install
+            ng build --prod
+  
       - name: publish App
         run:   |
-          cd api
-          dotnet publish -c Release -o ./out 
+            cd api
+            dotnet publish -c Release -o ./out 
+  
+      - name: Publish Angular App
+        uses: Azure/webapps-deploy@v2
+        with:
+            app-name: 'mercadona-angular'
+            publish-profile: ${{ secrets.PUBLISH_PROFILE_ANGULAR }}
+            package: ./angular-app/dist/angular-app
+
 
       - name: Deploy to Azure WebApp
         uses: Azure/webapps-deploy@v2
