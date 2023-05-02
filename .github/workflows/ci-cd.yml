@@ -19,6 +19,7 @@ jobs:
       
       - name: Replace values in appsettings.json
         run: |
+          cd api
           sed -i "s|REPLACE_DATABASE_CONNECTION_STRING|${{ secrets.DB_CONNECTION_STRING }}|g" ./appsettings.json
           sed -i "s|REPLACE_AZURE_BLOB_STORAGE_CONNECTION_STRING|${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}|g" ./appsettings.json
 
