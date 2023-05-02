@@ -58,7 +58,7 @@ jobs:
         with:
             app-name: 'mercadona-angular'
             publish-profile: ${{ secrets.PUBLISH_PROFILE_ANGULAR }}
-            package: ./angular-app/dist/angular-app
+            package: ./front-end/dist/
 
 
       - name: Deploy to Azure WebApp
