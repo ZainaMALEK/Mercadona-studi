@@ -41,24 +41,24 @@ jobs:
           dotnet build -c Release --no-restore
       
       
-      - name: Build Angular App
-        run: |
-            cd front-end
-            npm install
-            npm install -g @angular/cli
-            ng build --configuration production
+         # - name: Build Angular App
+        #run: |
+          #  cd front-end
+           # npm install
+           # npm install -g @angular/cli
+           # ng build --configuration production 
   
       - name: publish App
         run:   |
             cd api
             dotnet publish -c Release -o ./out 
   
-      - name: Publish Angular App
-        uses: Azure/webapps-deploy@v2
-        with:
-            app-name: 'mercadona-angular'
-            publish-profile: ${{ secrets.PUBLISH_PROFILE_ANGULAR }}
-            package: ./front-end/dist/
+    #  - name: Publish Angular App
+     #   uses: Azure/webapps-deploy@v2
+      #  with:
+       #     app-name: 'mercadona-angular'
+       #     publish-profile: ${{ secrets.PUBLISH_PROFILE_ANGULAR }}
+       #     package: ./front-end/dist/
 
 
       - name: Deploy to Azure WebApp
