@@ -22,22 +22,8 @@ public class Program
         DotEnv.Load();
         var builder = WebApplication.CreateBuilder(args);
         var configuration = builder.Configuration;
-        // Configuration de Serilog
-        Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
-            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-            .Enrich.FromLogContext()
-            .WriteTo.Console()
-             .WriteTo.AzureBlobStorage(
-                new BlobServiceClient(configuration.GetSection("Serilog:WriteTo:AzureBlobStorage:connectionString").Value),
-                restrictedToMinimumLevel: LogEventLevel.Verbose,
-                storageContainerName: configuration.GetSection("Serilog:WriteTo:AzureBlobStorage:containerName").Value,
-                storageFileName: configuration.GetSection("Serilog:WriteTo:AzureBlobStorage:logFileName").Value)
-            .CreateLogger();
 
-        builder.Services.AddSingleton(Log.Logger);
-        builder.Host.UseSerilog();
-
+       
         builder.Services.AddControllers();
         var services = builder.Services;
 

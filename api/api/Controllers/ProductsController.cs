@@ -23,11 +23,11 @@ namespace Backend.Controllers
         private string pathImages = @"C:\Mercadona\images";
         private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(Db_Context context, IImageService imageService, ILogger<ProductsController> logger)
+        public ProductsController(Db_Context context, IImageService imageService)
         {
             _context = context;
             _imageService = imageService;
-            _logger = logger;
+         
         }
 
         [HttpGet("testApi")]
@@ -75,7 +75,7 @@ namespace Backend.Controllers
             }
             catch (Exception err)
             {
-                _logger.LogError(err.Message);
+               
                 return StatusCode(500, err.Message);
 
             }
