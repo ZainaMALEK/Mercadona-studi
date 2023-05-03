@@ -40,8 +40,8 @@ namespace Backend.Controllers
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var tokeOptions = new JwtSecurityToken(                   
-                    issuer: "http://localhost:4200",
-                    audience: "http://localhost:9070",
+                    issuer: "https://mercadona-angular.azurewebsites.net/",
+                    audience: "https://mercadona-api.azurewebsites.net/",
                     claims: new List<Claim>(),
                     expires: DateTime.Now.AddMinutes(15),
                     signingCredentials: signinCredentials
