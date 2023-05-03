@@ -44,8 +44,8 @@ public class Program
            {
                options.TokenValidationParameters = new TokenValidationParameters
                {
-                   ValidateIssuer = false,
-                   ValidateAudience = false,
+                   ValidateIssuer = true,
+                   ValidateAudience = true,
                    ValidateLifetime = true,
                    ValidateIssuerSigningKey = true,
                    ValidIssuer = "https://mercadona-angular.azurewebsites.net/",
