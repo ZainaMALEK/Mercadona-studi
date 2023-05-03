@@ -15,7 +15,7 @@ export class AuthenticationService {
   constructor(private http : HttpClient,private router : Router, private jwtHelper: JwtHelperService) { }
 
   authenticate(user:any){
-    return this.http.post<AuthenticatedResponse>("http://localhost:9070/login", user, {
+    return this.http.post<AuthenticatedResponse>("https://mercadona-api.azurewebsites.net/login", user, {
       headers: new HttpHeaders({ "Content-Type": "application/json"})
     })
   }
