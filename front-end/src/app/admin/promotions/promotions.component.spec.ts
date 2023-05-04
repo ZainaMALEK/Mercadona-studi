@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
 import { PromotionsComponent } from './promotions.component';
 
 describe('PromotionsComponent', () => {
@@ -8,6 +9,7 @@ describe('PromotionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, FormsModule],
       declarations: [ PromotionsComponent ]
     })
     .compileComponents();

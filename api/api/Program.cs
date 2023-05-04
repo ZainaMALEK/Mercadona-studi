@@ -48,8 +48,9 @@ public class Program
                    ValidateAudience = true,
                    ValidateLifetime = true,
                    ValidateIssuerSigningKey = true,
-                   ValidIssuer = "https://mercadona-angular.azurewebsites.net/",
-                   ValidAudience = "https://mercadona-api.azurewebsites.net/",
+                   ValidIssuers = new List<string> { "https://mercadona-angular.azurewebsites.net/", "http://localhost:4200/" },
+                   ValidAudiences = new List<string> { "https://mercadona-api.azurewebsites.net/", "http://localhost:17453/" },
+
                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                };
            });

@@ -44,7 +44,7 @@ export class CatalogueComponent {
       this.productsService.getProducts().subscribe({
         next:  (data: Produit[]) => {
           this.products = data;
-          console.log(data);
+
           this.filteredProducts = data;
 
         },
@@ -61,7 +61,6 @@ export class CatalogueComponent {
     this.productsService.getCategories().subscribe({
       next:  (data: Categorie[]) => {
         this.categoryChecker.categories = data;
-        console.log(data);
         this.setAll(true);
 
       },
@@ -78,7 +77,6 @@ export class CatalogueComponent {
 
   setAll(completed: boolean) {
     if (this.categoryChecker.categories == null) {
-      console.log("cat null");
 
       return;
     }
@@ -90,20 +88,10 @@ export class CatalogueComponent {
     return this.categoryChecker.categories.filter((c:any) => c.completed).map((c:any) => c.libelle);
   }
 
-  /* uncheckAllCheckbox($event :any){
-    console.log("hello");
-    if (this.all ) {
-      const check = this.all;
-      check.checked = false;
-    }
-  } */
   filterProducts(){
 
 
     this.filteredProducts = this.products.filter(p => this.getSelectedCategories().includes( p.categorie.libelle) );
-    console.log(this.categoryChecker.categories);
-    console.log(this.getSelectedCategories());
-
 
      if (this.all.checked==true && (this.categoryChecker.categories.length != this.getSelectedCategories().length)) {//et une des categories n'est pas cochée
 

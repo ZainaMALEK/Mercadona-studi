@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AdminInterfaceComponent } from './admin-interface.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
+import { ProduitsComponent } from '../produits/produits.component'
+import { ProductsService } from 'src/app/services/products.service';
+import { AppModule } from 'src/app/app.module';
+
+
 
 describe('AdminInterfaceComponent', () => {
   let component: AdminInterfaceComponent;
@@ -8,7 +14,9 @@ describe('AdminInterfaceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminInterfaceComponent ]
+      imports: [HttpClientTestingModule, FormsModule, AppModule],
+      declarations: [ AdminInterfaceComponent ],
+      providers: [ProductsService]
     })
     .compileComponents();
 

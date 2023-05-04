@@ -37,11 +37,17 @@ namespace Backend.Controllers
             
             if (isUser != null)
             {
+                //var issuer = "https://mercadona-angular.azurewebsites.net/,http://localhost:4200/";
+               // var audience = "https://mercadona-api.azurewebsites.net/,http://localhost:17453/";
+
+                var issuer = "http://localhost:4200/";
+                var audience = ",http://localhost:17453/";
+
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                var tokeOptions = new JwtSecurityToken(                   
-                    issuer: "https://mercadona-angular.azurewebsites.net/",
-                    audience: "https://mercadona-api.azurewebsites.net/",
+                var tokeOptions = new JwtSecurityToken(
+                    issuer: issuer,
+                    audience: audience,
                     claims: new List<Claim>(),
                     expires: DateTime.Now.AddMinutes(15),
                     signingCredentials: signinCredentials

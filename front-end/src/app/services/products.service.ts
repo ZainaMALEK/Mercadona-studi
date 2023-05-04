@@ -3,15 +3,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Promotion } from '../models/Product';
+import { environment } from '../../environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  apiUrl:string = "https://mercadona-api.azurewebsites.net/api/"
+  apiUrl:string = environment.apiUrl + "api/"
   //apiUrl:string = "http://localhost:17453/api/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    console.log(environment.apiUrl);
+    console.log(environment.production);
+
+   }
 
   getProducts(): Observable<any> {
     return this.http.get<any>(this.apiUrl +'Products/products');

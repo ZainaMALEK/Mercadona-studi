@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
 
 export interface AuthenticatedResponse{
   token: string;
@@ -11,11 +12,11 @@ export interface AuthenticatedResponse{
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  apiUrl:string = environment.apiUrl +"login";
   constructor(private http : HttpClient,private router : Router, private jwtHelper: JwtHelperService) { }
 
   authenticate(user:any){
-    return this.http.post<AuthenticatedResponse>("https://mercadona-api.azurewebsites.net/login", user, {
+    return this.http.post<AuthenticatedResponse>(this.apiUrl, user, {
       headers: new HttpHeaders({ "Content-Type": "application/json"})
     })
   }

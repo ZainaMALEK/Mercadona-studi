@@ -28,7 +28,7 @@ constructor(private authService :AuthenticationService, private router :Router){
 
   }
   onSubmit() {
-    console.log(this.user);
+
     this.authService.authenticate(this.user).subscribe({
       next: (response: AuthenticatedResponse) => {
         const token = response.token;
