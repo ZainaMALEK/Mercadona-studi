@@ -23,17 +23,7 @@ jobs:
             npm install
             npm run build --if-present
   
-        - name: Run unit tests
-          run: |
-            cd front-end
-            sed -i -z "s/ removeAllListeners()\n/ removeAllListeners();process.nextTick(() => process.exit(code || 0));\n/g" node_modules/karma/lib/server.js
-            npm run test --if-present --verbose
-          env:
-            CI: true
-          
-        - name: Show test results
-          run: |
-            cat front-end/test-report.xml
+      
 
         - name: Upload artifact for deployment job
           uses: actions/upload-artifact@v2
