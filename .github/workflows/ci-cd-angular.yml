@@ -27,6 +27,12 @@ jobs:
           run: |
             cd front-end
             npm run test --if-present
+          env:
+            CI: true
+          
+        - name: Show test results
+          run: |
+            cat front-end/test-report.xml
 
         - name: Upload artifact for deployment job
           uses: actions/upload-artifact@v2

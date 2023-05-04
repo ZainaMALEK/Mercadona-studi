@@ -20,7 +20,7 @@ namespace Backend.Controllers
     {
         private readonly Db_Context _context;
         private readonly IImageService _imageService;
-        private string pathImages = @"C:\Mercadona\images";
+        //private string pathImages = @"C:\Mercadona\images";
         private readonly ILogger<ProductsController> _logger;
 
         public ProductsController(Db_Context context, IImageService imageService)
