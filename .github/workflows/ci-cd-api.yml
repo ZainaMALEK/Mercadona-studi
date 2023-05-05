@@ -43,11 +43,21 @@ jobs:
             cd api
             dotnet publish -c Release -o ./out 
   
-   
+      - name: Build test project
+        run: |
+          cd apiTest
+          dotnet build -c Release --no-restore
+            
+      - name: Publish test project
+        run: |
+          cd apiTest
+          dotnet publish -c Release -o ./out
 
       - name: Deploy to Azure WebApp
         uses: Azure/webapps-deploy@v2
         with: 
           app-name: 'mercadona-api'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
-          package : ./api/out
+          package : |
+            ./api/out/
+            ./apiTest/out/
