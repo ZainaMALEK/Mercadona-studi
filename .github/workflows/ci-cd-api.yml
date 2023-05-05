@@ -1,4 +1,4 @@
-name: CI/CD de l'api .net6
+name: Continuous integration and deployment
 
 on:
   push:
@@ -24,23 +24,27 @@ jobs:
           ls
           sed -i "s|REPLACE_DATABASE_CONNECTION_STRING|${{ secrets.DB_CONNECTION_STRING }}|g" ./appsettings.json
           sed -i "s|REPLACE_AZURE_BLOB_STORAGE_CONNECTION_STRING|${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}|g" ./appsettings.json
-
       - name: Show current working directory
         run: |
           pwd
           ls
-
       - name: Restore dependencies
         run: |
           cd api
           dotnet restore 
-
       - name: Build App
         run:  |
           cd api
           dotnet build -c Release --no-restore
       
-    
+      
+         # - name: Build Angular App
+        #run: |
+          #  cd front-end
+           # npm install
+           # npm install -g @angular/cli
+           # ng build --configuration production 
+  
       - name: publish App
         run:   |
             cd api
@@ -54,7 +58,3 @@ jobs:
           app-name: 'mercadona-api'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
           package : ./api/out
-
-
-
-        
