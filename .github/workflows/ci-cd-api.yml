@@ -42,7 +42,7 @@ jobs:
         run:   |
             cd api
             dotnet publish -c Release -o ./out 
-  
+
       - name: Build test project
         run: |
           ls
@@ -61,6 +61,6 @@ jobs:
         with: 
           app-name: 'mercadona-api'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
-          package : |
-            ./api/out/
+          package :
+            ./api/out/ 
             ./apiTest/out/
