@@ -63,4 +63,4 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
           package :
             ./api/out/ 
-            ./apiTest/out/
+           
