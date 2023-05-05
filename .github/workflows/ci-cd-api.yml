@@ -45,6 +45,7 @@ jobs:
   
       - name: Build test project
         run: |
+          ls
           cd apiTest
           dotnet build -c Release --no-restore
             
