@@ -72,9 +72,14 @@ public class Program
             .AllowAnyMethod()
             .AllowAnyHeader();
         });
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mon API v1");
+        });
         app.UseAuthentication();
         app.UseAuthorization();
-
+       
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();

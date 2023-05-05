@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<configSections>
+		<section name="NUnit" type="System.Configuration.NameValueSectionHandler"/>
+	</configSections>
+	<NUnit>
+		<TestRunner>
+			<!-- Specify the path to the NUnit3TestAdapter package -->
+			<add key="PackagePath" value=".\packages\NUnit3TestAdapter.3.13.0\tools"/>
+		</TestRunner>
+		<TestReporting>
+			<!-- Specify the path and file name of the report -->
+			<ReportPath>.\TestResults\</ReportPath>
+			<ReportName>TestResults.xml</ReportName>
+			<!-- Specify the format of the report -->
+			<ReportFormat>xml</ReportFormat>
+		</TestReporting>
+	</NUnit>
+</configuration>
