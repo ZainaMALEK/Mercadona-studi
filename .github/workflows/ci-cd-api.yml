@@ -24,10 +24,7 @@ jobs:
           ls
           sed -i "s|REPLACE_DATABASE_CONNECTION_STRING|${{ secrets.DB_CONNECTION_STRING }}|g" ./appsettings.json
           sed -i "s|REPLACE_AZURE_BLOB_STORAGE_CONNECTION_STRING|${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}|g" ./appsettings.json
-      - name: Show current working directory
-        run: |
-          pwd
-          ls
+     
       - name: Restore dependencies
         run: |
           cd api
@@ -49,13 +46,19 @@ jobs:
             cd api
             dotnet publish -c Release -o ./out 
 
-    
+      - name: Show current working directory
+        run: |
+          pwd
+          ls
+          cd api
+          ls
+          cd out
+          ls
 
       - name: Deploy to Azure WebApp
         uses: Azure/webapps-deploy@v2
         with: 
           app-name: 'mercadona-api'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2479CBB6F70C434F93FA538B0A87F694 }}
-          package :
-            ./api/out/ 
+          package : ./api/out/ 
            
