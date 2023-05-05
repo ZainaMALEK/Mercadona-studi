@@ -1,4 +1,4 @@
-name: Deploy to mercadona angular to Azure
+name: Deploy angular to Azure
 
 on:
   push:

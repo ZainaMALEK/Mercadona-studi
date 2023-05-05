@@ -1,4 +1,4 @@
-name: Continuous integration and deployment
+name: deploy api to azure
 
 on:
   push:
@@ -37,13 +37,6 @@ jobs:
           cd api
           dotnet build -c Release --no-restore
       
-      
-         # - name: Build Angular App
-        #run: |
-          #  cd front-end
-           # npm install
-           # npm install -g @angular/cli
-           # ng build --configuration production 
   
       - name: publish App
         run:   |
