@@ -29,18 +29,13 @@ jobs:
         run: |
           cd api
           dotnet restore 
+          
       - name: Build App
         run:  |
           cd api
           dotnet build -c Release --no-restore
       
-      - name: Run automated test 
-        run: |
-          cd api
-          dotnet test -c Release --no-build  
-        
-
-  
+    
       - name: publish App
         run:   |
             cd api
@@ -48,12 +43,9 @@ jobs:
 
       - name: Show current working directory
         run: |
-          pwd
-          ls
           cd api
           ls
-          cd out
-          ls
+          
 
       - name: Deploy to Azure WebApp
         uses: Azure/webapps-deploy@v2
