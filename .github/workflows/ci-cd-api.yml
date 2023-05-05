@@ -46,11 +46,13 @@ jobs:
       - name: Build test project
         run: |
           ls
+          cd api
           cd apiTest
           dotnet build -c Release --no-restore
             
       - name: Publish test project
         run: |
+          cd api
           cd apiTest
           dotnet publish -c Release -o ./out
 
