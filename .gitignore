@@ -5,3 +5,4 @@
 /api/.vs
 /.vs/mercadona_net6/FileContentIndex
 /api/api/_appsettings.json
+/api/apiTest/apiTest.csproj
