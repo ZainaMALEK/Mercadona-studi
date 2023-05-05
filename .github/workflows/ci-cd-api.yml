@@ -48,11 +48,7 @@ jobs:
 
       - name: Show current working directory
         run: |
-          pwd
-          ls
           cd api
-          ls
-          cd out
           ls
 
       - name: Deploy to Azure WebApp
