@@ -13,6 +13,6 @@ namespace Backend.Models
         public float Prix { get; set; }
         public string ImagePath { get; set; }
         public virtual Categorie Categorie { get; set; }
-        public virtual Promotion Promotion { get; set; }
+        public virtual Promotion? Promotion { get; set; }
     }
 }

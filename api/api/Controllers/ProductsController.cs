@@ -120,11 +120,20 @@ namespace Backend.Controllers
                 //product.ImagePath = filePath;
 
             }
+            try
+            {
+                _context.Produits.Add(product);
+                await _context.SaveChangesAsync();
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+          
 
-            _context.Produits.Add(product);
-            await _context.SaveChangesAsync();
-
-            return Ok(product);
+           
         }
 
         [Authorize]
