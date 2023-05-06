@@ -37,8 +37,8 @@ namespace Backend.Controllers
             
             if (isUser != null)
             {
-                var issuer = "https://mercadona-angular.azurewebsites.net/,http://localhost:4200/";
-                var audience = "https://mercadona-api.azurewebsites.net/,http://localhost:17453/";
+                var issuer = "https://mercadona-angular.azurewebsites.net/";
+                var audience = "https://mercadona-api.azurewebsites.net/";
 
                 //var issuer = "http://localhost:4200/";
                 //var audience = ",http://localhost:17453/";
