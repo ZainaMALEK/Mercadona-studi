@@ -1,13 +1,14 @@
 <div class="container-fluid">
-  <div class="spinner-container" *ngIf="products.length <0;else readyProducts ">
 
-    <img src="assets/images/loader.gif">
-  </div>
-  <ng-template #readyProducts class="catalogue">
+  <div #readyProducts class="catalogue">
 
     <div class="title-container">
 
       <h5 class="text-center pt-3 pb-1 title">Notre catalogue de produits Mercadona</h5>
+      <div class="text-center">
+
+        <img *ngIf="loading" src="assets/images/loader.gif" style="width: 6rem;">
+      </div>
 
     </div>
 
@@ -60,7 +61,7 @@
           </div>
         </div>
       </div>
-  </ng-template>
+  </div>
 
 
 

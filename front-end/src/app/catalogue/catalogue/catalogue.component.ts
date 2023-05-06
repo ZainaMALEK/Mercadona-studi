@@ -32,6 +32,7 @@ export class CatalogueComponent {
     categories :[]
      ,
   };
+  loading: boolean =false;
 
   constructor(private productsService :ProductsService){
     this.GetProducts();
@@ -39,12 +40,12 @@ export class CatalogueComponent {
   }
 
   GetProducts(): void {
-
+      this.loading = true;
       this.productsService.getProducts().subscribe({
         next:  (data: Produit[]) => {
           this.products = data;
-
           this.filteredProducts = data;
+          this.loading = false;
 
         },
         error: error => {
