@@ -51,7 +51,10 @@ export class ProduitsComponent {
     formData.append('description', this.product.description);
     formData.append('prix', this.product.prix.toString());
     formData.append('categorieID', this.product.categorieID.toString());
-    formData.append('promotionID', this.product.promotionID.toString());
+    if(this.product.promotionID != null && this.product.promotionID != undefined){
+      formData.append('promotionID', this.product.promotionID.toString());
+    }
+
 
     formData.append('image',  this.product.image)
 
