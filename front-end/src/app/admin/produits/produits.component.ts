@@ -35,6 +35,7 @@ export class ProduitsComponent {
   categories : Categorie[];
   promotions : Promotion[];
   products:Produit[];
+  errorMsg = false;
 
   handleFileInput(event: any) {
 
@@ -46,26 +47,34 @@ export class ProduitsComponent {
 
 
   onSubmit() {
+    console.log(this.product);
+
     const formData = new FormData();
     formData.append('libelle', this.product.libelle);
     formData.append('description', this.product.description);
     formData.append('prix', this.product.prix.toString());
     formData.append('categorieID', this.product.categorieID.toString());
-    if(this.product.promotionID != null && this.product.promotionID != undefined){
+    if(this.product.promotionID != null && this.product.promotionID != undefined && this.product.promotionID >0){
       formData.append('promotionID', this.product.promotionID.toString());
+    }
+    console.log(this.product.image);
+    if(this.product.image != null && this.product.image != undefined){
+      formData.append('image',  this.product.image);
+      this._productsService.addProduct(formData).subscribe((product: Produit) => {
+        console.log(product);
+        this.products.unshift(product);
+        this.errorMsg = false;
+      }, (error: any) => {
+        console.log(error);
+      });
+    }else{
+      this.errorMsg = true;
     }
 
 
-    formData.append('image',  this.product.image)
 
-    console.log(this.product.image);
 
-    this._productsService.addProduct(formData).subscribe((product: Produit) => {
-      console.log(product);
-      this.products.unshift(product)
-    }, (error: any) => {
-      console.log(error);
-    });
+
   }
 }
 
