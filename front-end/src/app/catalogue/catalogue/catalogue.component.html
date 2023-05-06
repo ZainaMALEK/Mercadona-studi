@@ -14,7 +14,7 @@
       <div class="all-container row">
         <div class="col-md-2">
 
-          <section class="filters-section">
+          <section class="filters-section" >
             <span class="">
               <mat-checkbox #all checked
                 (change)="setAll($event.checked)">
@@ -24,7 +24,7 @@
             <span class="">
 
                 <div *ngFor="let cat of categoryChecker.categories" >
-                  <mat-checkbox [(ngModel)]="cat.completed" (change)="filterProducts()">
+                  <mat-checkbox [(ngModel)]="cat.completed" (change)="filterProducts()" >
                     {{cat.libelle}}
                   </mat-checkbox>
                 </div>

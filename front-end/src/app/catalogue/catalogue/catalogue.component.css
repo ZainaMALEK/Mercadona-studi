@@ -56,9 +56,9 @@ ul {
 .title-container{
   padding: 2vh;
 }
-::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
+/* ::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
   background-color: red;
-}
+} */
 .card-text{
   border-top: #edc6a6 solid;
 }
@@ -67,4 +67,14 @@ ul {
   align-items: center;
   justify-content: center;
   height: 100vh; /* ou une hauteur fixe si vous préférez */
+}
+
+::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark {
+  background: #3E3E3E !important;
+  border-color: #3E3E3E !important;
+}
+
+::ng-deep  .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color: #3E3E3E !important;
+
 }

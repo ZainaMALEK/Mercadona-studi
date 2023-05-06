@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="row pt-2">
+  <div class="row pt-4">
     <div class="col-md-6">
       <div class="text-center">
-        <h5>Ajouter une promotion</h5>
+        <h5 class="title-app">Ajouter une promotion</h5>
           <form #promoForm = ngForm (submit)="submitForm()">
             <div >
               <label for = "startDate">Date de début</label>
@@ -16,7 +16,7 @@
               <label for = "remise">Remise</label>
               <input class="form-control" name = "remise" type="number" [(ngModel)] = "remise" required>
             </div>
-            <button type="submit" class="btn btn-primary mt-1" [disabled]="!promoForm.valid">Enregistrer</button>
+            <button type="submit" class="btn btn-primary mt-3" [disabled]="!promoForm.valid">Enregistrer</button>
             <div style="color:red" *ngIf="errorDate">La date de début de promotion doit être inférieure à la date de fin de promotion</div>
           </form>
       </div>
@@ -25,7 +25,7 @@
     <div class="col-md-6">
       <div class="text-center">
 
-        <h5>Liste des promotions</h5>
+        <h5 class="title-app">Liste des promotions</h5>
         <table class="table">
           <thead>
             <tr>

@@ -2,9 +2,9 @@
 
 
 <div class="container">
-  <div class="row mt-2" >
+  <div class="row mt-4" >
     <div class="col-md-6  mb-2 text-center">
-      <h5>Ajouter une catégorie : </h5>
+      <h5 class="title-app">Ajouter une catégorie : </h5>
 
       <form #catForm="ngForm" (ngSubmit)="submit()">
         <input class="form-control" type ="text" name="libelle" [(ngModel)] = "libelle"><br>
@@ -14,7 +14,7 @@
 
     </div>
     <div class="col-md-6 text-center">
-      <h5>Liste des catégories</h5>
+      <h5 class="title-app">Liste des catégories</h5>
       <div *ngFor="let cat of categories">
      <!--    <p>{{cat.libelle}}</p> -->
 

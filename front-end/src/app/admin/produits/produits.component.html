@@ -3,7 +3,7 @@
 
     <div class="col-md-6 vert-center">
       <div class="product-form">
-        <h5 class="text-center">Ajouter un produit</h5>
+        <h5 class="text-center title-app">Ajouter un produit</h5>
 
         <form (ngSubmit)="onSubmit()" #productForm="ngForm" enctype="multipart/form-data">
           <div class="form-group">
@@ -45,7 +45,7 @@
             </select>
 
           </div>
-          <div class="text-center pt-1">
+          <div class="text-center pt-3">
 
             <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Ajouter le produit</button>
           </div>
@@ -54,8 +54,8 @@
       </div>
     </div>
 
-    <div class="col-md-6 mt-4">
-      <h5 class="text-center">Liste des produits :</h5>
+    <div class="col-md-6 mt-2">
+      <h5 class="text-center title-app">Liste des produits :</h5>
       <div class="products">
         <table class="table">
           <thead>

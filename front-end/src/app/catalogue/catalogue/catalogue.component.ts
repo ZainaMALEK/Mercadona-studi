@@ -1,7 +1,6 @@
 import { Produit } from 'src/app/models/Product';
 import { ProductsService } from './../../services/products.service';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import {ThemePalette} from '@angular/material/core';
 import { MatCheckbox } from '@angular/material/checkbox';
 
 
@@ -9,7 +8,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 export interface Categorie {
   libelle: string;
   completed: boolean;
-  color: ThemePalette;
+  //color: black;
 
 }
 
@@ -29,7 +28,7 @@ export class CatalogueComponent {
   categoryChecker: any = {
     name: 'Tout',
     completed: true,
-    color: 'green',
+    //color: 'black',
     categories :[]
      ,
   };

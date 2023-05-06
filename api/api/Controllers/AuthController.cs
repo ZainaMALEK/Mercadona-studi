@@ -33,7 +33,7 @@ namespace Backend.Controllers
                 return BadRequest("Invalid client request");
             }
 
-            var isUser = _context.Utilisateurs.Where(u => u.Login == user.Login && user.Password == user.Password).FirstOrDefault();
+            var isUser = _context.Utilisateurs.Where(u => u.Login == user.Login && u.Password == user.Password).FirstOrDefault();
             
             if (isUser != null)
             {

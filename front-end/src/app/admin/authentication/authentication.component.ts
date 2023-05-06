@@ -16,6 +16,7 @@ export interface AuthenticatedResponse{
 })
 
 export class AuthenticationComponent {
+  loading = false;
   invalidLogin!: boolean;
 constructor(private authService :AuthenticationService, private router :Router){
 
@@ -28,7 +29,8 @@ constructor(private authService :AuthenticationService, private router :Router){
 
   }
   onSubmit() {
-
+    this.invalidLogin = false;
+    this.loading = true;
     this.authService.authenticate(this.user).subscribe({
       next: (response: AuthenticatedResponse) => {
         const token = response.token;
@@ -36,7 +38,10 @@ constructor(private authService :AuthenticationService, private router :Router){
         this.invalidLogin = false;
         this.router.navigate(["/AdminInterface"]);
       },
-      error: (err) => this.invalidLogin = true
-    })
-  }
+      error: (err) => {
+        this.invalidLogin = true
+        this.loading = false;
+    }
+  });
+}
 }

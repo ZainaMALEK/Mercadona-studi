@@ -1,5 +1,6 @@
 <div class="parent-form">
   <div class="text-center form">
+    <img *ngIf="loading" src="assets/images/loader.gif" style="width: 6rem;">
     <form #authForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="username">Nom d'utilisateur</label>
@@ -9,8 +10,9 @@
         <label for="password">Mot de passe</label>
         <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" required>
       </div>
-      <button type="submit" class="btn btn-primary mt-2">Se connecter</button>
+      <button type="submit" class="btn btn-primary mt-2"  [disabled]="!authForm.valid">Se connecter</button>
       <!-- <p>{{authForm.value | json}}</p> -->
+      <p *ngIf="invalidLogin">Mot de passe ou nom d'utilisateur incorrect</p>
     </form>
   </div>
 

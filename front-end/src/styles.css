@@ -2,3 +2,29 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.title-app{
+  font-size: large;
+  font-weight: 900;
+}
+
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  color: white;
+  pointer-events: none;
+  background-color: #d9913b;
+  border-color: #d9913b;
+  opacity: 50%;
+}
+
+ .btn {
+  color: white;
+  background-color: #d9913b;
+  border-color: #d9913b;
+ }
+
+ .btn:hover {
+  color: white;
+  background-color: #c37809;
+  border-color: #c37809;
+}

@@ -2,8 +2,12 @@
   font-size:0.8em;
   font-family: 'Inter', sans-serif;
   color: #3E3E3E;
+  padding-right: 0;
+  padding-left: 0;
 }
+
 h5{
   font-size: 0.9em;
   color: #3E3E3E;
 }
+
