@@ -30,8 +30,8 @@
 
           <div class="form-group">
             <label for="category">Catégorie:</label>
-            <select [(ngModel)]="product.categorieID" name="categorieID" class="form-control">
-              <option *ngFor="let categorie of categories" [value]="categorie.categorieID" required>{{ categorie.libelle }}
+            <select [(ngModel)]="product.categorieID" name="categorieID" class="form-control" required>
+              <option *ngFor="let categorie of categories" [value]="categorie.categorieID" >{{ categorie.libelle }}
               </option>
             </select>
 
