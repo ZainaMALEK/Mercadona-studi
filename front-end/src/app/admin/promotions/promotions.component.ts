@@ -11,8 +11,6 @@ export class PromotionsComponent {
   constructor(private _productService: ProductsService){
     this._productService.getPromotions().subscribe(promo =>{
       this.promotions = promo ;
-      console.log(promo);
-
 
     })
 

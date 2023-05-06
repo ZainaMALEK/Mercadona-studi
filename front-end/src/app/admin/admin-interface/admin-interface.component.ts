@@ -16,7 +16,6 @@ export class AdminInterfaceComponent {
 
     this._productsService.getProducts().subscribe(p=>{
       this.products = p;
-      console.log(this.products);
 
     });
 
@@ -55,10 +54,9 @@ export class AdminInterfaceComponent {
 
     formData.append('image',  this.product.image)
 
-    console.log(this.product.image);
 
     this._productsService.addProduct(formData).subscribe(product => {
-      console.log(product);
+
       this.products.unshift(product)
     }, error => {
       console.log(error);

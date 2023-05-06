@@ -16,7 +16,6 @@ export class ProduitsComponent {
 
     this._productsService.getProducts().subscribe(p=>{
       this.products = p;
-      console.log(this.products);
 
     });
 
@@ -57,11 +56,9 @@ export class ProduitsComponent {
     if(this.product.promotionID != null && this.product.promotionID != undefined && this.product.promotionID >0){
       formData.append('promotionID', this.product.promotionID.toString());
     }
-    console.log(this.product.image);
     if(this.product.image != null && this.product.image != undefined){
       formData.append('image',  this.product.image);
       this._productsService.addProduct(formData).subscribe((product: Produit) => {
-        console.log(product);
         this.products.unshift(product);
         this.errorMsg = false;
       }, (error: any) => {
