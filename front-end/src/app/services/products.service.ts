@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
 export class ProductsService {
   apiUrl:string = environment.apiUrl + "api/"
   //apiUrl:string = "http://localhost:17453/api/";
-
+  pathImages:string = "https://csb1003200284b3e222.blob.core.windows.net/mercadona-images/";
   constructor(private http: HttpClient) {
     console.log(environment.apiUrl);
     console.log(environment.production);
@@ -35,6 +35,12 @@ export class ProductsService {
    // const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
     return this.http.post<any>(this.apiUrl +'Products/addProduct', formData);
   }
+
+  editProduct(formData: FormData): Observable<any> {
+console.log(formData);
+
+     return this.http.post<any>(this.apiUrl +'Products/editProduct', formData);
+   }
 
   addCategorie(libelle: string): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');

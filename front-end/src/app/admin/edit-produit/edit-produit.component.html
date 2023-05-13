@@ -1,0 +1,59 @@
+<div class="vert-center p-3">
+  <div class="product-form">
+    <h5 class="text-center title-app">Modifier le produit</h5>
+
+
+    <form (ngSubmit)="editProduct()" #productForm="ngForm" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="libelle">*Nom du produit:</label>
+        <input type="text" id="libelle" name="libelle" class="form-control" [(ngModel)]="productToSend.libelle" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">*Description:</label>
+        <textarea id="description" name="description" class="form-control" [(ngModel)]="productToSend.description" maxlength="200"
+          required>
+        {{p.description}}
+      </textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="libelle">*Image</label>
+        <input type="file" id="img" name="image" class="form-control" accept="image/*" required
+          (change)="handleFileInput($event)">
+      </div>
+
+      <div class="form-group">
+        <label for="prix">*Prix:</label>
+        <input type="number" id="prix" name="prix" class="form-control" [(ngModel)]="productToSend.prix" min="0" required>
+      </div>
+
+      <div class="form-group">
+        <label for="category">*Catégorie:</label>
+        <select [(ngModel)]="productToSend.categorieID" name="categorieID" class="form-control" required>
+          <option *ngFor="let categorie of categories" [value]="categorie.categorieID" >{{ categorie.libelle }}
+          </option>
+        </select>
+
+      </div>
+
+      <div class="form-group">
+        <label for="category">Promotion:</label>
+        <select [(ngModel)]="productToSend.promotionID" name="promotionID" class="form-control">
+          <option value=0>Aucune promotion</option>
+          <option *ngFor="let promotion of promotions" [value]="promotion.promotionID">{{ promotion.remise }} %
+          </option>
+        </select>
+
+      </div>
+
+     <!--  <div class="text-center pt-3">
+        <p *ngIf="errorMsg">Veuillez renseigner tous les champs obligatoires.</p>
+        <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Ajouter le produit</button>
+      </div> -->
+      <!-- <p>{{product | json}}</p> -->
+      <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+  </div>
+</div>
+

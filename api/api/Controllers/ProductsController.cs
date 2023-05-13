@@ -20,14 +20,14 @@ namespace Backend.Controllers
     {
         private readonly Db_Context _context;
         private readonly IImageService _imageService;
-        //private string pathImages = @"C:\Mercadona\images";
+        private string pathImages = @"C:\Mercadona\images";
         private readonly ILogger<ProductsController> _logger;
 
         public ProductsController(Db_Context context, IImageService imageService)
         {
             _context = context;
             _imageService = imageService;
-         
+
         }
 
         [HttpGet("testApi")]
@@ -53,7 +53,7 @@ namespace Backend.Controllers
         [HttpGet("products")]
         public IActionResult GetProducts()
         {
-            
+
             try
             {
                 var results = _context.Produits.ToList();
@@ -64,8 +64,8 @@ namespace Backend.Controllers
                 libelle = p.Libelle,
                 description = p.Description,
                 prix = p.Prix,
-                //image = Convert.ToBase64String(System.IO.File.ReadAllBytes(p.ImagePath)),
-                image = p.ImagePath,
+                image = Convert.ToBase64String(System.IO.File.ReadAllBytes(p.ImagePath)),
+               // image = p.ImagePath,
                 categorie = p.Categorie,
                 promotion = p.Promotion
             })
@@ -75,14 +75,14 @@ namespace Backend.Controllers
             }
             catch (Exception err)
             {
-               
+
                 return StatusCode(500, err.Message);
 
             }
 
         }
 
-        
+
         [HttpPost("addProduct")]
         public async Task<IActionResult> AddProduct([FromForm] ProductMapper productM)
         {
@@ -104,8 +104,8 @@ namespace Backend.Controllers
 
             if (file != null && file.Length > 0)
             {
-                product.ImagePath =  _imageService.UploadImageToAzure(file);
-               /* if (!Directory.Exists(pathImages))
+
+                if (!Directory.Exists(pathImages))
                 {
                     Directory.CreateDirectory(pathImages);
                 }
@@ -115,9 +115,9 @@ namespace Backend.Controllers
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
-                }*/
+                }
                 // Mettre à jour le chemin d'accès du fichier dans la base de données
-                //product.ImagePath = filePath;
+                product.ImagePath = filePath;
 
             }
             try
@@ -131,9 +131,43 @@ namespace Backend.Controllers
                 Console.WriteLine(ex.Message);
                 throw;
             }
-          
 
-           
+
+
+        }
+
+        [HttpPost("editProduct")]
+        public async Task<IActionResult> editProduct([FromForm] ProductMapper productM)
+        {
+            var product = _context.Produits.Where(p => p.ProduitID == productM.ProductID).FirstOrDefault();
+            product.Libelle= productM.Libelle;
+            product.Prix = productM.Prix;
+            product.Description = productM.Description;
+            var cat = _context.Categories.Where(c => c.CategorieID == productM.CategorieID).FirstOrDefault();
+            var prom = _context.Promotions.Where(p => p.PromotionID == productM.PromotionID).FirstOrDefault();
+            product.Categorie = cat;
+            product.Promotion = prom;
+            if (productM.Image != null)
+            {
+                var file = productM.Image;
+                if (!Directory.Exists(pathImages))
+                {
+                    Directory.CreateDirectory(pathImages);
+                }
+                string imageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+
+                var filePath = Path.Combine(pathImages, imageName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                // Mettre à jour le chemin d'accès du fichier dans la base de données
+                product.ImagePath = filePath;
+            }
+            _context.Produits.Update(product);
+            _context.SaveChanges();
+
+            return Ok(product);
         }
 
         [Authorize]

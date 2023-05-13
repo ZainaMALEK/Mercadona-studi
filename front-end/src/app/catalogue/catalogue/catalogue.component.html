@@ -1,7 +1,10 @@
+
 <div class="container-fluid">
 
   <div #readyProducts class="catalogue">
+    <div class="edit">
 
+    </div>
     <div class="title-container">
 
       <h5 class="text-center pt-3 pb-1 title">Notre catalogue de produits Mercadona</h5>
@@ -35,12 +38,12 @@
       <div class="col-md-10">
         <div class="row">
           <div *ngFor="let p of filteredProducts" class=" item col-md-3">
-            <!--        <ng-container  *ngIf="getSelectedCategories().includes(p.categorie.libelle)" > -->
+
             <ng-container>
               <div class="card ">
                 <h5 class="card-title">{{p.libelle | titlecase}}</h5>
                 <div class="img-container">
-                  <img class="card-img" [src]="pathImages + p.image" alt="Card image cap">
+                  <img class="card-img" [src]=" 'data:image/png;base64,' + p.image" alt="Card image cap">
                 </div>
 
                 <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>
@@ -54,6 +57,15 @@
                       >{{ApplyPromo(p.prix, p.promotion.remise)}} $</span>
                   </div>
                   <p class="card-text">{{p.description}}</p>
+                  <div class="actions">
+                    <div class="edit">
+                      <i class="fa-solid fa-pen-to-square" (click)="openEditProduct(p)"></i>
+
+                    </div>
+                    <div class="delete">
+                      <i class="fa-solid fa-trash"></i>
+                    </div>
+                  </div>
 
                 </div>
               </div>

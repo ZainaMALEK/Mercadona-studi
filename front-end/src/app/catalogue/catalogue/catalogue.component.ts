@@ -2,6 +2,8 @@ import { Produit } from 'src/app/models/Product';
 import { ProductsService } from './../../services/products.service';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
+import { EditProduitComponent } from 'src/app/admin/edit-produit/edit-produit.component';
 
 
 
@@ -15,7 +17,8 @@ export interface Categorie {
 @Component({
   selector: 'app-catalogue',
   templateUrl: './catalogue.component.html',
-  styleUrls: ['./catalogue.component.css']
+  styleUrls: ['./catalogue.component.css'],
+
 })
 
 export class CatalogueComponent {
@@ -34,11 +37,19 @@ export class CatalogueComponent {
   };
   loading: boolean =false;
 
-  constructor(private productsService :ProductsService){
+  constructor(private productsService :ProductsService, public dialog: MatDialog){
     this.GetProducts();
     this.GetCategories();
   }
+  opentestProduct(): void {
+    const dialogRef = this.dialog.open(EditProduitComponent);
+  }
+  openEditProduct(product : Produit) {
+    this.dialog.open(EditProduitComponent, {
+      data: product,
 
+    });
+  }
   GetProducts(): void {
       this.loading = true;
       this.productsService.getProducts().subscribe({

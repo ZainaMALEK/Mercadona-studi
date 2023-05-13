@@ -17,6 +17,9 @@ import { ProduitsComponent } from './admin/produits/produits.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthInterceptor } from './services/auth-interceptor';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditProduitComponent } from './admin/edit-produit/edit-produit.component';
+
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -32,9 +35,12 @@ export function tokenGetter() {
     PromotionsComponent,
     CategoriesComponent,
     ProduitsComponent,
+    EditProduitComponent,
 
   ],
   imports: [
+
+    MatDialogModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -47,10 +53,12 @@ export function tokenGetter() {
         allowedDomains: ["https://mercadona-api.azurewebsites.net"],
         disallowedRoutes: []
       }
-    })
+    }),
+
   ],
+
   providers: [AuthenticationService,  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
 

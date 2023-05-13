@@ -2,6 +2,7 @@ import { AuthenticationService } from './../../services/authentication.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 export interface User{
   login:string,
   password:string
@@ -21,6 +22,7 @@ export class AuthenticationComponent {
 constructor(private authService :AuthenticationService, private router :Router){
 
 }
+
   user: User = {
     login: '',
     password: ''

@@ -46,7 +46,6 @@ export class ProduitsComponent {
 
 
   onSubmit() {
-    console.log(this.product);
 
     const formData = new FormData();
     formData.append('libelle', this.product.libelle);
