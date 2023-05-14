@@ -47,6 +47,18 @@
                 </div>
 
                 <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>
+
+                <div class="actions ">
+                  <span class="edit me-2">
+                    <i class="fa-solid fa-pen-to-square" (click)="openEditProduct(p)"></i>
+
+                  </span>
+                  <span class="delete ">
+                    <i class="fa-solid fa-trash" (click)="deleteProduct(p)"></i>
+                  </span>
+                </div>
+
+
                 <div class="card-body">
 
                   <div *ngIf="p.promotion" class="promo-text" >Promo du <span>{{p.promotion.debut | date : "dd-MM-yy"}}
@@ -56,16 +68,10 @@
                     <span [ngClass]="{'line': p.promotion.remise > 0}">{{p.prix}}</span> $ <span
                       >{{ApplyPromo(p.prix, p.promotion.remise)}} $</span>
                   </div>
-                  <p class="card-text">{{p.description}}</p>
-                  <div class="actions">
-                    <div class="edit">
-                      <i class="fa-solid fa-pen-to-square" (click)="openEditProduct(p)"></i>
 
-                    </div>
-                    <div class="delete">
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
+                  <p class="card-text">{{p.description.substring(0, 50)}}{{p.description.length > 100 ? '...' : ''}}</p>
+
+
 
                 </div>
               </div>

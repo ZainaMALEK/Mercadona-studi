@@ -19,6 +19,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { AuthInterceptor } from './services/auth-interceptor';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditProduitComponent } from './admin/edit-produit/edit-produit.component';
+import { DeleteItemComponent } from './admin/delete-item/delete-item.component';
 
 
 export function tokenGetter() {
@@ -36,6 +37,7 @@ export function tokenGetter() {
     CategoriesComponent,
     ProduitsComponent,
     EditProduitComponent,
+    DeleteItemComponent,
 
   ],
   imports: [

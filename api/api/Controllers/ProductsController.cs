@@ -6,6 +6,7 @@ using Backend.Models.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -136,7 +137,7 @@ namespace Backend.Controllers
 
         }
 
-        [HttpPost("editProduct")]
+        [HttpPut("editProduct")]
         public async Task<IActionResult> editProduct([FromForm] ProductMapper productM)
         {
             var product = _context.Produits.Where(p => p.ProduitID == productM.ProductID).FirstOrDefault();
@@ -168,6 +169,23 @@ namespace Backend.Controllers
             _context.SaveChanges();
 
             return Ok(product);
+        }
+
+
+        [HttpDelete("Product/remove/{id}")]
+        public IActionResult removeProduct([FromRoute] int id) 
+        {
+          
+
+            var product = _context.Produits.Where(p=> p.ProduitID == id).FirstOrDefault();
+            if (product != null)
+            {
+
+            _context.Produits.Remove(product);
+            _context.SaveChanges();
+            }
+            return Ok();
+            
         }
 
         [Authorize]

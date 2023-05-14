@@ -30,6 +30,20 @@ p{
   color: white;
   padding: 0 5px;
 }
+.edit{
+  color: #c35e0d;
+}
+.delete{
+  color: #f44336;
+}
+.actions{
+
+  width: max-content;
+  position: absolute;
+  right: 1rem;
+  color: white;
+  padding: 0 5px;
+}
 .line {
   text-decoration: line-through;
   font-weight: bold;

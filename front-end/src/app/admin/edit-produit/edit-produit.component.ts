@@ -1,6 +1,6 @@
 import { ProductsService } from 'src/app/services/products.service';
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Categorie, Produit, Promotion } from 'src/app/models/Product';
 import { ProductMapper } from 'src/app/models/ProductMapper';
 
@@ -16,7 +16,7 @@ public productToSend: ProductMapper = new ProductMapper();
 public categories:Categorie[];
 public promotions:Promotion[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public p: Produit, private productsService :ProductsService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public p: Produit, private productsService :ProductsService, public dialogRef: MatDialogRef<EditProduitComponent>) {
     this.produit = p;
 
     this.produitCopy = Object.assign({}, p);
@@ -52,14 +52,11 @@ public promotions:Promotion[];
     console.log(formData);
 
       this.productsService.editProduct(formData).subscribe((product: Produit) => {
+        this.dialogRef.close(true);
 
       }, (error: any) => {
         console.log(error);
       });
-
-
-
-
 
   }
 
