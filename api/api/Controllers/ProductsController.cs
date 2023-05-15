@@ -40,14 +40,15 @@ namespace Backend.Controllers
         [HttpGet("categories")]
         public IActionResult GetCategories()
         {
-            var categories = _context.Categories.ToList();
+            var categories = _context.Categories.ToList().OrderByDescending(c => c.CategorieID);
             return Ok(categories);
         }
 
         [HttpGet("promotions")]
         public IActionResult GetPromotions()
         {
-            var promotions = _context.Promotions.ToList();
+            var promotions = _context.Promotions.ToList().OrderByDescending(p => p.PromotionID);
+            Console.WriteLine(promotions);
             return Ok(promotions);
         }
 
@@ -66,7 +67,7 @@ namespace Backend.Controllers
                 description = p.Description,
                 prix = p.Prix,
                 image = Convert.ToBase64String(System.IO.File.ReadAllBytes(p.ImagePath)),
-               // image = p.ImagePath,
+                // image = p.ImagePath,
                 categorie = p.Categorie,
                 promotion = p.Promotion
             })
@@ -141,7 +142,7 @@ namespace Backend.Controllers
         public async Task<IActionResult> editProduct([FromForm] ProductMapper productM)
         {
             var product = _context.Produits.Where(p => p.ProduitID == productM.ProductID).FirstOrDefault();
-            product.Libelle= productM.Libelle;
+            product.Libelle = productM.Libelle;
             product.Prix = productM.Prix;
             product.Description = productM.Description;
             var cat = _context.Categories.Where(c => c.CategorieID == productM.CategorieID).FirstOrDefault();
@@ -171,21 +172,42 @@ namespace Backend.Controllers
             return Ok(product);
         }
 
+        [HttpPut("category/edit/{id}")]
+        public async Task<IActionResult> editCategory([FromBody] Categorie categorie)
+        {
+            var cat = _context.Categories.Where(c => c.CategorieID == categorie.CategorieID).FirstOrDefault();
+            cat.Libelle = categorie.Libelle;
+            _context.Categories.Update(cat);
+            _context.SaveChanges();
+            return Ok(cat);
+        }
+
+        [HttpPut("promotion/edit/{id}")]
+        public async Task<IActionResult> editPromotion([FromBody] Promotion promo)
+        {
+            var prom = _context.Promotions.Where(c => c.PromotionID == promo.PromotionID).FirstOrDefault();
+            prom.Debut = promo.Debut;
+            prom.Remise = promo.Remise;
+            prom.Fin = promo.Fin;
+            _context.Promotions.Update(prom);
+            _context.SaveChanges();
+            return Ok(prom);
+        }
 
         [HttpDelete("product/remove/{id}")]
-        public IActionResult removeProduct([FromRoute] int id) 
+        public IActionResult removeProduct([FromRoute] int id)
         {
-          
 
-            var product = _context.Produits.Where(p=> p.ProduitID == id).FirstOrDefault();
+
+            var product = _context.Produits.Where(p => p.ProduitID == id).FirstOrDefault();
             if (product != null)
             {
 
-            _context.Produits.Remove(product);
-            _context.SaveChanges();
+                _context.Produits.Remove(product);
+                _context.SaveChanges();
             }
             return Ok();
-            
+
         }
 
         [HttpDelete("category/remove/{id}")]

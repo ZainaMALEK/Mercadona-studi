@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Promotion } from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/products.service';
 import { DeleteItemComponent } from '../delete-item/delete-item.component';
+import { EditItemComponent } from '../edit-item/edit-item.component';
 
 @Component({
   selector: 'app-promotions',
@@ -18,6 +19,7 @@ export class PromotionsComponent {
   today = new Date();
   startDate: string =  new Date().toISOString().split('T')[0];
   endDate: string  =new Date().toISOString().split('T')[0];
+
   remise:number;
   errorDate:boolean = false;
 
@@ -60,6 +62,17 @@ export class PromotionsComponent {
       }
     });
 
+  }
+
+  editPromotion(prom: Promotion) {
+    const dialogRef = this.dialog.open(EditItemComponent, {
+      data:  { item: prom, itemType: "promotion" }
+    });
+    dialogRef.afterClosed().subscribe((refresh: boolean) => {
+      if (refresh) {
+        this.getPromotions();
+      }
+    });
   }
 
 

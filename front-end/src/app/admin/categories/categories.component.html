@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row mt-4" >
     <div class="col-md-6  mb-2 text-center">
-      <h5 class="title-app">Ajouter une catégorie : </h5>
+      <h4 class="title-app">Ajouter une catégorie : </h4>
 
       <form #catForm="ngForm" (ngSubmit)="submit()">
         <input class="form-control" type ="text" name="libelle" [(ngModel)] = "libelle"><br>
@@ -14,14 +14,17 @@
 
     </div>
     <div class="col-md-6 text-center">
-      <h5 class="title-app">Liste des catégories</h5>
+      <h4 class="title-app">Liste des catégories</h4>
       <div *ngFor="let cat of categories">
 
       <div class="card mb-1 shadow-sm">
         <div class="card-body">
-          <p class="card-title">{{cat.libelle}}</p>
+          <p class="card-title d-inline-block me-3">{{cat.libelle}}</p>
           <span class="delete ">
-            <i class="fa-solid fa-trash" (click)="deleteCategory(cat)"></i>
+            <i class="fa-solid fa-trash me-2" style="color:red"(click)="deleteCategory(cat)"></i>
+          </span>
+          <span class="edit " >
+            <i class="fa-solid fa-pen-to-square" (click)="editCategory(cat)"></i>
           </span>
 
         </div>

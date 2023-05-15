@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.Migrations
 {
     [DbContext(typeof(Db_Context))]
-    [Migration("20230501113346_in")]
-    partial class @in
+    [Migration("20230515191753_promotionDateOnly")]
+    partial class promotionDateOnly
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,7 +67,7 @@ namespace api.Migrations
                     b.Property<float>("Prix")
                         .HasColumnType("real");
 
-                    b.Property<int>("PromotionID")
+                    b.Property<int?>("PromotionID")
                         .HasColumnType("integer");
 
                     b.HasKey("ProduitID");
@@ -87,11 +87,11 @@ namespace api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PromotionID"));
 
-                    b.Property<DateTime>("Debut")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Debut")
+                        .HasColumnType("date");
 
-                    b.Property<DateTime>("Fin")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("Fin")
+                        .HasColumnType("date");
 
                     b.Property<float>("Remise")
                         .HasColumnType("real");
@@ -136,9 +136,7 @@ namespace api.Migrations
 
                     b.HasOne("Backend.Models.Promotion", "Promotion")
                         .WithMany()
-                        .HasForeignKey("PromotionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PromotionID");
 
                     b.Navigation("Categorie");
 

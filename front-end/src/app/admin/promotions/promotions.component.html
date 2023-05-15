@@ -2,7 +2,7 @@
   <div class="row pt-4">
     <div class="col-md-6">
       <div class="text-center">
-        <h5 class="title-app">Ajouter une promotion</h5>
+        <h4 class="title-app">Ajouter une promotion</h4>
         <form #promoForm=ngForm (submit)="submitForm()">
           <div>
             <label for="startDate">*Date de début</label>
@@ -28,7 +28,7 @@
     <div class="col-md-6">
       <div class="text-center">
 
-        <h5 class="title-app">Liste des promotions</h5>
+        <h4 class="title-app">Liste des promotions</h4>
         <table class="table">
           <thead>
             <tr>
@@ -48,12 +48,12 @@
               <td>{{promo.remise}} %</td>
               <td>
                 <span class="edit me-2">
-                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-pen-to-square" (click)="editPromotion(promo)"></i>
                 </span>
               </td>
               <td>
                 <span class="delete ">
-                  <i class="fa-solid fa-trash" (click)="deletePromotion(promo)"></i>
+                  <i class="fa-solid fa-trash" style="color:red" (click)="deletePromotion(promo)"></i>
                 </span>
               </td>
             </tr>

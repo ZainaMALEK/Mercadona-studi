@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace api.Migrations
 {
     [DbContext(typeof(Db_Context))]
-    [Migration("20230506203959_nullablePromotion")]
-    partial class nullablePromotion
+    [Migration("20230515192548_promotionDateTime")]
+    partial class promotionDateTime
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

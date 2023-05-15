@@ -1,0 +1,39 @@
+<div class="container p-3 text-center">
+  <div *ngIf="itemType == 'category'" class="container">
+    <section class="categorySection">
+      <form #catForm="ngForm" (ngSubmit)="edit()">
+        <input class="form-control" type="text" name="libelle" [(ngModel)]="category.libelle"><br>
+        <button type="submit" class="btn btn-primary"
+          [disabled]="category.libelle == null || category.libelle == '' ">Enregistrer</button>
+        <!--  {{catForm.value|json}} -->
+      </form>
+    </section>
+
+  </div>
+
+  <section *ngIf="itemType == 'promotion'" class="promotionSection container">
+
+    <div class="text-center">
+      <h4 class="title-app">Editer une promotion</h4>
+      <form #promoForm=ngForm (submit)="edit()">
+        <div>
+          <label for="startDate">Date de début</label>
+          <input class="form-control" name="startDate" type="date" [(ngModel)]="startDate"
+        >
+        </div>
+        <div>
+          <label for="endDate">Date de fin</label>
+          <input class="form-control" name="endDate" type="date" [(ngModel)]="endDate"
+            >
+        </div>
+        <div>
+          <label for="remise">Remise</label>
+          <input class="form-control" name="remise" type="number" [(ngModel)]="promotion.remise" min="0" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 me-1" >Enregistrer</button>
+        <button  class="btn btn-primary mt-3">Annuler</button>
+
+      </form>
+    </div>
+  </section>
+</div>

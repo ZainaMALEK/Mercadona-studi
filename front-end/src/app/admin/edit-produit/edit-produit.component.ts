@@ -29,10 +29,13 @@ public promotions:Promotion[];
     this.productToSend.description = this.produitCopy.description;
     this.productToSend.prix = this.produitCopy.prix;
     this.productToSend.categorieID = this.produitCopy.categorie.categorieID;
-    this.productToSend.promotionID = this.produitCopy.promotion.promotionID;
+    if(this.produitCopy.promotion != null){
+
+      this.productToSend.promotionID = this.produitCopy.promotion.promotionID;
+    }
   }
 
-  pathImages:string = this.productsService.pathImages;
+  //pathImages:string = this.productsService.pathImages;
 
   editProduct(){
     const formData = new FormData();

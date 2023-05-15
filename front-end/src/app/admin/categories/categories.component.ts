@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Categorie } from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/products.service';
 import { DeleteItemComponent } from '../delete-item/delete-item.component';
+import { EditItemComponent } from '../edit-item/edit-item.component';
 
 @Component({
   selector: 'app-categories',
@@ -29,6 +30,18 @@ export class CategoriesComponent {
       data:  { itemID: cat.categorieID, itemType: "category" }
     });
 
+    dialogRef.afterClosed().subscribe((refresh: boolean) => {
+      if (refresh) {
+        this.getCategories();
+      }
+    });
+
+  }
+
+  editCategory(cat: Categorie){
+    const dialogRef = this.dialog.open(EditItemComponent, {
+      data:  { item: cat, itemType: "category" }
+    });
     dialogRef.afterClosed().subscribe((refresh: boolean) => {
       if (refresh) {
         this.getCategories();

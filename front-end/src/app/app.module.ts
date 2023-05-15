@@ -20,6 +20,7 @@ import { AuthInterceptor } from './services/auth-interceptor';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditProduitComponent } from './admin/edit-produit/edit-produit.component';
 import { DeleteItemComponent } from './admin/delete-item/delete-item.component';
+import { EditItemComponent } from './admin/edit-item/edit-item.component';
 
 
 export function tokenGetter() {
@@ -38,6 +39,7 @@ export function tokenGetter() {
     ProduitsComponent,
     EditProduitComponent,
     DeleteItemComponent,
+    EditItemComponent,
 
   ],
   imports: [

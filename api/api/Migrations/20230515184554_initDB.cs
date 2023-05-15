@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace api.Migrations
 {
-    public partial class @in : Migration
+    public partial class initDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace api.Migrations
                     PromotionID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Debut = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Fin = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Fin = table.Column<DateTime>(type: "date", nullable: false),
                     Remise = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
@@ -64,7 +64,7 @@ namespace api.Migrations
                     Prix = table.Column<float>(type: "real", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: false),
                     CategorieID = table.Column<int>(type: "integer", nullable: false),
-                    PromotionID = table.Column<int>(type: "integer", nullable: false)
+                    PromotionID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,8 +79,7 @@ namespace api.Migrations
                         name: "FK_Produits_Promotions_PromotionID",
                         column: x => x.PromotionID,
                         principalTable: "Promotions",
-                        principalColumn: "PromotionID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PromotionID");
                 });
 
             migrationBuilder.CreateIndex(
