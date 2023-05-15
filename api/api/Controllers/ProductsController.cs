@@ -172,7 +172,7 @@ namespace Backend.Controllers
         }
 
 
-        [HttpDelete("Product/remove/{id}")]
+        [HttpDelete("product/remove/{id}")]
         public IActionResult removeProduct([FromRoute] int id) 
         {
           
@@ -186,6 +186,38 @@ namespace Backend.Controllers
             }
             return Ok();
             
+        }
+
+        [HttpDelete("category/remove/{id}")]
+        public IActionResult removeCategory([FromRoute] int id)
+        {
+
+
+            var cat = _context.Categories.Where(p => p.CategorieID == id).FirstOrDefault();
+            if (cat != null)
+            {
+
+                _context.Categories.Remove(cat);
+                _context.SaveChanges();
+            }
+            return Ok();
+
+        }
+
+        [HttpDelete("promotion/remove/{id}")]
+        public IActionResult removePromotion([FromRoute] int id)
+        {
+
+
+            var prom = _context.Promotions.Where(p => p.PromotionID == id).FirstOrDefault();
+            if (prom != null)
+            {
+
+                _context.Promotions.Remove(prom);
+                _context.SaveChanges();
+            }
+            return Ok();
+
         }
 
         [Authorize]

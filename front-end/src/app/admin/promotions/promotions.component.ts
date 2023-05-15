@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Promotion } from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/products.service';
+import { DeleteItemComponent } from '../delete-item/delete-item.component';
 
 @Component({
   selector: 'app-promotions',
@@ -8,19 +10,23 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./promotions.component.css']
 })
 export class PromotionsComponent {
-  constructor(private _productService: ProductsService){
-    this._productService.getPromotions().subscribe(promo =>{
-      this.promotions = promo ;
-
-    })
-
+  constructor(private _productService: ProductsService ,public dialog: MatDialog){
+    this.getPromotions();
   }
+
   promotions :Promotion[];
   today = new Date();
   startDate: string =  new Date().toISOString().split('T')[0];
   endDate: string  =new Date().toISOString().split('T')[0];
   remise:number;
   errorDate:boolean = false;
+
+  getPromotions(){
+    this._productService.getPromotions().subscribe(promo =>{
+      this.promotions = promo ;
+
+    })
+  }
 
   submitForm() {
     let datedebut = new Date(this.startDate);
@@ -39,6 +45,20 @@ export class PromotionsComponent {
     }else{
       this.errorDate=true;
     }
+
+  }
+
+  deletePromotion(prom: Promotion) {
+
+    const dialogRef = this.dialog.open(DeleteItemComponent, {
+      data:  { itemID: prom.promotionID, itemType: "promotion" }
+    });
+
+    dialogRef.afterClosed().subscribe((refresh: boolean) => {
+      if (refresh) {
+        this.getPromotions();
+      }
+    });
 
   }
 

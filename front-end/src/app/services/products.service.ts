@@ -2,7 +2,7 @@ import { ProductMapper } from './../models/ProductMapper';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Promotion } from '../models/Product';
+import { Categorie, Promotion } from '../models/Product';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -10,9 +10,9 @@ import { environment } from '../../environments/environment';
 })
 export class ProductsService {
   apiUrl: string = environment.apiUrl + 'api/';
-  //apiUrl:string = "http://localhost:17453/api/";
   pathImages: string =
     'https://csb1003200284b3e222.blob.core.windows.net/mercadona-images/';
+
   constructor(private http: HttpClient) {
     console.log(environment.apiUrl);
     console.log(environment.production);
@@ -52,6 +52,7 @@ export class ProductsService {
       { headers: headers }
     );
   }
+
 
   addPromotion(promo: Promotion): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'Products/addPromotion', promo);

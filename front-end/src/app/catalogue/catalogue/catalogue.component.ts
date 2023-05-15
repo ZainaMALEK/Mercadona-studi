@@ -5,6 +5,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EditProduitComponent } from 'src/app/admin/edit-produit/edit-produit.component';
 import { DeleteItemComponent } from 'src/app/admin/delete-item/delete-item.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export interface Categorie {
   libelle: string;
@@ -19,8 +20,8 @@ export interface Categorie {
 })
 export class CatalogueComponent {
   @ViewChild('all', { static: false }) all: MatCheckbox;
-  pathImages: string =
-    'https://csb1003200284b3e222.blob.core.windows.net/mercadona-images/';
+  isAdmin =false;
+  pathImages: string = 'https://csb1003200284b3e222.blob.core.windows.net/mercadona-images/';
   categories!: Categorie[];
   products: Produit[] = [];
   selectedCategories: number[];
@@ -28,22 +29,23 @@ export class CatalogueComponent {
   categoryChecker: any = {
     name: 'Tout',
     completed: true,
-    //color: 'black',
     categories: [],
   };
   loading: boolean = false;
 
   constructor(
     private productsService: ProductsService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private jwtHelper: JwtHelperService
   ) {
     this.GetProducts();
     this.GetCategories();
   }
+
   deleteProduct(product: Produit) {
     //adapter ensuite a categorie ou promotion
     const dialogRef = this.dialog.open(DeleteItemComponent, {
-      data: product,
+      data:  { itemID: product.produitID, itemType: "product" }
     });
 
     dialogRef.afterClosed().subscribe((refresh: boolean) => {
@@ -124,6 +126,14 @@ export class CatalogueComponent {
       //et une des categories n'est pas cochée
 
       this.all.checked = false;
+    }
+  }
+  isUserAdmin(){
+    const token = localStorage.getItem("jwt");
+    if (token && !this.jwtHelper.isTokenExpired(token)){
+      return true;
+    }else{
+      return false;
     }
   }
 }

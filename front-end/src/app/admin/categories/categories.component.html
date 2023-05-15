@@ -16,15 +16,13 @@
     <div class="col-md-6 text-center">
       <h5 class="title-app">Liste des catégories</h5>
       <div *ngFor="let cat of categories">
-     <!--    <p>{{cat.libelle}}</p> -->
-
-
-
-
 
       <div class="card mb-1 shadow-sm">
         <div class="card-body">
           <p class="card-title">{{cat.libelle}}</p>
+          <span class="delete ">
+            <i class="fa-solid fa-trash" (click)="deleteCategory(cat)"></i>
+          </span>
 
         </div>
       </div>

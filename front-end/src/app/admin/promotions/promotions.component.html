@@ -3,22 +3,25 @@
     <div class="col-md-6">
       <div class="text-center">
         <h5 class="title-app">Ajouter une promotion</h5>
-          <form #promoForm = ngForm (submit)="submitForm()">
-            <div >
-              <label for = "startDate">*Date de début</label>
-              <input  class="form-control" name = "startDate" type="date"  [(ngModel)]="startDate" [min]="today | date:'yyyy-MM-dd'" required>
-            </div>
-            <div >
-              <label for = "endDate">*Date de fin</label>
-              <input  class="form-control" name = "endDate" type="date" [(ngModel)]="endDate"  [min]="startDate| date:'yyyy-MM-dd' " required>
-            </div>
-            <div >
-              <label for = "remise">*Remise</label>
-              <input class="form-control" name = "remise" type="number" [(ngModel)] = "remise"  min="0" required>
-            </div>
-            <button type="submit" class="btn btn-primary mt-3" [disabled]="!promoForm.valid">Enregistrer</button>
-            <div style="color:red" *ngIf="errorDate">La date de début de promotion doit être inférieure à la date de fin de promotion</div>
-          </form>
+        <form #promoForm=ngForm (submit)="submitForm()">
+          <div>
+            <label for="startDate">*Date de début</label>
+            <input class="form-control" name="startDate" type="date" [(ngModel)]="startDate"
+              [min]="today | date:'yyyy-MM-dd'" required>
+          </div>
+          <div>
+            <label for="endDate">*Date de fin</label>
+            <input class="form-control" name="endDate" type="date" [(ngModel)]="endDate"
+              [min]="startDate| date:'yyyy-MM-dd' " required>
+          </div>
+          <div>
+            <label for="remise">*Remise</label>
+            <input class="form-control" name="remise" type="number" [(ngModel)]="remise" min="0" required>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3" [disabled]="!promoForm.valid">Enregistrer</button>
+          <div style="color:red" *ngIf="errorDate">La date de début de promotion doit être inférieure à la date de fin
+            de promotion</div>
+        </form>
       </div>
 
     </div>
@@ -33,14 +36,26 @@
               <th scope="col">Date de début</th>
               <th scope="col">Date de fin</th>
               <th scope="col">Remise</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let promo of promotions">
 
-              <td>{{promo.debut  | date: 'dd/MM/yyyy'}}</td>
-              <td>{{promo.fin  | date: 'dd/MM/yyyy'}}</td>
+              <td>{{promo.debut | date: 'dd/MM/yyyy'}}</td>
+              <td>{{promo.fin | date: 'dd/MM/yyyy'}}</td>
               <td>{{promo.remise}} %</td>
+              <td>
+                <span class="edit me-2">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </span>
+              </td>
+              <td>
+                <span class="delete ">
+                  <i class="fa-solid fa-trash" (click)="deletePromotion(promo)"></i>
+                </span>
+              </td>
             </tr>
 
           </tbody>

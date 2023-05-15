@@ -2,9 +2,7 @@
 <div class="container-fluid">
 
   <div #readyProducts class="catalogue">
-    <div class="edit">
 
-    </div>
     <div class="title-container">
 
       <h5 class="text-center pt-3 pb-1 title">Notre catalogue de produits Mercadona</h5>
@@ -48,7 +46,7 @@
 
                 <span class="promo-div" *ngIf="p.promotion">Promo {{p.promotion.remise}} %</span>
 
-                <div class="actions ">
+                <div *ngIf="isUserAdmin()" class="actions ">
                   <span class="edit me-2">
                     <i class="fa-solid fa-pen-to-square" (click)="openEditProduct(p)"></i>
 
