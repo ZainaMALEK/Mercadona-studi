@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://mercadona-api.azurewebsites.net/'
+  apiUrl:  'http://vps-506fba80.vps.ovh.net:90/'
 };
